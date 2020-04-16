@@ -1,0 +1,75 @@
+import { Component, OnInit } from '@angular/core';
+import { UserService } from './user.service';
+import { IUser } from './user';
+
+@Component({
+  selector: 'app-user',
+  templateUrl: './user.component.html',
+  styleUrls: ['./user.component.sass']
+})
+export class UserComponent implements OnInit {
+
+  users: IUser[] = [];
+  user: IUser;
+  id = 15;
+
+  newUser = {
+    username: 'httpTest',
+    email: '',
+    firstName: 'http',
+    lastName: 'User'
+  };
+
+  constructor(private userService: UserService) { }
+
+  getAllUsers() {
+    this.userService.getUsers()
+    .subscribe((users: IUser[]) => {
+      this.users = users;
+    });
+  }
+
+  getOneUser() {
+    this.userService.getUser(1)
+    .subscribe((user: IUser) => {
+      this.user = user;
+    });
+  }
+
+  printAllUsers() {
+    for (const user of this.users) {
+      console.log(user);
+      console.log(user.firstName);
+      console.log(user.profile.displayName);
+    }
+  }
+
+  printOneUser() {
+    console.log(this.user);
+    console.log(this.user.profile.image);
+  }
+
+  addUser() {
+    this.userService.addUser(this.newUser)
+    .subscribe(user => this.users.push(user));
+  }
+
+  deleteUser() {
+    this.userService.deleteUser(this.id)
+    // .subscribe();
+    .subscribe(user => this.users.splice(this.users.indexOf(user), 1));
+  }
+
+  updateUser() {
+    this.users[3].email = '';
+    this.userService.updateUser(this.id, this.users[3])
+    // .subscribe();
+    // .subscribe(user => this.users[this.users.indexOf(user)] = user);
+    .subscribe(user => this.users.splice(this.users.indexOf(user), 1, user));
+  }
+
+  ngOnInit(): void {
+    this.getAllUsers();
+    this.getOneUser();
+  }
+}
