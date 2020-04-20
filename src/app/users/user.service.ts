@@ -43,8 +43,6 @@ export class UserService {
     );
   }
 
-  // TODO Update user
-
   updateUser(id: number, user: IUser): Observable<IUser> {
     return this.http.put<IUser>(this.usersUrl + id + '/', user, httpOptions)
     .pipe(
