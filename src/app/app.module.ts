@@ -7,11 +7,13 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './users/user.component';
+import { ProjectComponent } from './projects/project.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserComponent,
+    ProjectComponent,
   ],
   imports: [
     BrowserModule,
