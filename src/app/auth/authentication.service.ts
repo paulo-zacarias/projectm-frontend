@@ -3,8 +3,6 @@ import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError} from 'rxjs/operators';
 
-import { IUser } from './user';
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json',
@@ -14,49 +12,51 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AuthenticationService {
+
+  private authUrl = 'http://127.0.0.1:8000/users/auth';
   private usersUrl = 'http://127.0.0.1:8000/users/';
 
-  constructor(private http: HttpClient) { }
 
-  getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(this.usersUrl)
+  currentUser = {};
+
+  constructor(private http: HttpClient) {
+    this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+   }
+
+  register(user: any) {
+    // TO DO
+  }
+
+  login(username: string, password: string) {
+    return this.http.post<any>(this.authUrl, {username, password}, httpOptions).subscribe( data => {
+      console.log(data);
+      console.log(data.user_id);
+      localStorage.setItem('token', data.token);
+      this.getUser(data.user_id).subscribe(user => {
+        this.currentUser = user;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+      });
+    });
+  }
+
+  logout() {
+    this.currentUser = {};
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+  }
+
+  getUser(id: number): Observable<any> {
+    return this.http.get<any>(this.usersUrl + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     );
   }
 
-  getUser(id: number): Observable<IUser> {
-    return this.http.get<IUser>(this.usersUrl + id)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
-  }
-
-  addUser(user: any): Observable<IUser> {
-    return this.http.post<IUser>(this.usersUrl, user, httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
-  }
-
-  updateUser(id: number, user: IUser): Observable<IUser> {
-    return this.http.put<IUser>(this.usersUrl + id, user, httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
-  }
-
-  deleteUser(id: number): Observable<IUser> {
-    return this.http.delete<IUser>(this.usersUrl + id)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    );
+  get isLoggedIn(): boolean {
+    const token = localStorage.getItem('token');
+    return (token !== null) ? true : false;
   }
 
   private handleError(error: HttpErrorResponse) {

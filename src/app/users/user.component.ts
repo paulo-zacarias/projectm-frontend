@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { IUser } from './user';
+import { AuthenticationService } from '../auth/authentication.service';
 
 @Component({
   selector: 'app-user',
@@ -20,7 +21,7 @@ export class UserComponent implements OnInit {
     lastName: 'User'
   };
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private auth: AuthenticationService) { }
 
   getAllUsers() {
     this.userService.getUsers()
@@ -66,6 +67,22 @@ export class UserComponent implements OnInit {
     // .subscribe();
     // .subscribe(user => this.users[this.users.indexOf(user)] = user);
     .subscribe(user => this.users.splice(this.users.indexOf(user), 1, user));
+  }
+
+  login() {
+    this.auth.login('root', 'root0');
+  }
+
+  logout() {
+    this.auth.logout();
+  }
+
+  showCurrentUser() {
+    console.log(this.auth.currentUser);
+  }
+
+  isLoggedIn() {
+    console.log(this.auth.isLoggedIn);
   }
 
   ngOnInit(): void {
