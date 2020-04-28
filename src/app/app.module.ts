@@ -12,6 +12,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './users/login/login.component';
 import { LoginStatusComponent } from './users/login/login-status.component';
+import { WelcomeComponent } from './home/welcome.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { LoginStatusComponent } from './users/login/login-status.component';
     NavigationComponent,
     LoginComponent,
     LoginStatusComponent,
+    WelcomeComponent,
   ],
   imports: [
     BrowserModule,

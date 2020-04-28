@@ -8,7 +8,8 @@
 </span>
 <span *ngIf="!currentUser">
     <button mat-button>Register</button>
-    <button mat-stroked-button (click)="signIn()">Login</button>
+    <!-- <button mat-stroked-button (click)="signIn()">Login</button> -->
+    <button mat-stroked-button [routerLink]="['/login']">Login</button>
 </span>
 
 <mat-menu #appMenu="matMenu">

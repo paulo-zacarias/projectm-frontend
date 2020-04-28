@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../auth/authentication.service';
 import { IUser } from '../user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-status',
@@ -11,7 +12,7 @@ export class LoginStatusComponent implements OnInit {
 
   currentUser: IUser;
 
-  constructor(public auth: AuthenticationService) { }
+  constructor(private auth: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
     this.auth.currentUser.subscribe((user: IUser) => {
@@ -27,6 +28,7 @@ export class LoginStatusComponent implements OnInit {
 
   signOut() {
     this.auth.logout();
+    this.router.navigateByUrl('/home');
     // Todo: redirect to some page
   }
 }

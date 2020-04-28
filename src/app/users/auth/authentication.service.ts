@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { environment } from '../../../environments/environment';
 import { IUser } from '../user';
 import { UserService } from '../user.service';
 
@@ -15,7 +16,7 @@ const httpOptions = {
 })
 export class AuthenticationService {
 
-  private authUrl = 'http://127.0.0.1:8000/users/auth';
+  private authUrl = environment.API_URL + '/users/auth';
 
   private currentUserSubject: BehaviorSubject<IUser>;
   public currentUser: Observable<IUser>;
@@ -31,7 +32,7 @@ export class AuthenticationService {
     // TO DO
   }
 
-    login(username: string, password: string) {
+  login(username: string, password: string) {
     return this.http.post<any>(this.authUrl, {username, password}, httpOptions).subscribe( data => {
       localStorage.setItem('token', data.token);
       this.getLoggedUser(data.user_id);

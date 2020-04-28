@@ -70,7 +70,7 @@ export class UserComponent implements OnInit {
   }
 
   login() {
-    this.auth.login('root', 'root0');
+    this.auth.login('root', 'root');
   }
 
   logout() {
