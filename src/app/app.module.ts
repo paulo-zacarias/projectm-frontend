@@ -10,6 +10,8 @@ import { UserComponent } from './users/user.component';
 import { ProjectComponent } from './projects/project.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './users/login/login.component';
+import { LoginStatusComponent } from './users/login/login-status.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     UserComponent,
     ProjectComponent,
     NavigationComponent,
+    LoginComponent,
+    LoginStatusComponent,
   ],
   imports: [
     BrowserModule,

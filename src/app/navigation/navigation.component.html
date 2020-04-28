@@ -8,6 +8,11 @@
     <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
   </button>
   <span>projectm</span>
+  <div class="toolbar-container">
+    <span>
+      <app-login-status></app-login-status>
+    </span>
+  </div>
 </mat-toolbar>
 <mat-sidenav-container class="sidenav-container">
   <mat-sidenav #drawer class="sidenav mat-elevation-z15" fixedInViewport=false
@@ -23,6 +28,6 @@
   </mat-sidenav>
   <mat-sidenav-content>
       <app-user></app-user>
-      <app-project></app-project>
+      <!-- <app-project></app-project> -->
   </mat-sidenav-content>
 </mat-sidenav-container>
