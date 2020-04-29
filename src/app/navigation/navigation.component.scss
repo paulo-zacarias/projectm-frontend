@@ -1,5 +1,6 @@
 .sidenav-container {
   height: 100%;
+  overflow: hidden;
 }
 
 .sidenav {
@@ -20,4 +21,11 @@
   width: 100%;
   display: flex;
   justify-content: flex-end;
+}
+
+.sidenav-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }

@@ -13,6 +13,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './users/login/login.component';
 import { LoginStatusComponent } from './users/login/login-status.component';
 import { WelcomeComponent } from './home/welcome.component';
+import { UserRegisterComponent } from './users/register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { WelcomeComponent } from './home/welcome.component';
     LoginComponent,
     LoginStatusComponent,
     WelcomeComponent,
+    UserRegisterComponent,
   ],
   imports: [
     BrowserModule,
