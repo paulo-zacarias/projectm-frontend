@@ -21,14 +21,8 @@ export class LoginStatusComponent implements OnInit {
     });
   }
 
-  // To be removed after signup component is implemented
-  signIn() {
-    this.auth.login('ChangePassword666', 'ChangePassword666');
-  }
-
   signOut() {
     this.auth.logout();
     this.router.navigateByUrl('/home');
-    // Todo: redirect to some page
   }
 }

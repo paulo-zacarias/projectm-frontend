@@ -14,6 +14,7 @@ import { LoginComponent } from './users/login/login.component';
 import { LoginStatusComponent } from './users/login/login-status.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { UserRegisterComponent } from './users/register/user-register.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { UserRegisterComponent } from './users/register/user-register.component'
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   providers: [
     {

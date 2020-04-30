@@ -1,8 +1,12 @@
-.example-card {
+.login-card {
     max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
+}
+
+  .form-container {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.card-header {
+    text-align: center;
+}
