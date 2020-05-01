@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from './user.service';
 import { IUser } from './user';
-import { AuthenticationService } from '../auth/authentication.service';
+import { AuthenticationService } from './auth/authentication.service';
 
 @Component({
   selector: 'app-user',
@@ -50,8 +50,8 @@ export class UserComponent implements OnInit {
     console.log(this.user.profile.image);
   }
 
-  addUser() {
-    this.userService.addUser(this.newUser)
+  createUser() {
+    this.userService.createUser(this.newUser)
     .subscribe(user => this.users.push(user));
   }
 
@@ -70,7 +70,7 @@ export class UserComponent implements OnInit {
   }
 
   login() {
-    this.auth.login('root', 'root0');
+    this.auth.login('root', 'root');
   }
 
   logout() {

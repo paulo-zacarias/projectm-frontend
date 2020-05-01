@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError} from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 import { IProject } from './project';
 
@@ -16,7 +17,7 @@ const httpOptions = {
 })
 export class ProjectService {
 
-  private projectsUrl = 'http://127.0.0.1:8000/projects/';
+  private projectsUrl = environment.API_URL + '/projects/';
 
   constructor(private http: HttpClient) { }
 

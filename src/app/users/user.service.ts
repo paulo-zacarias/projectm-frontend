@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError} from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 import { IUser } from './user';
 
@@ -15,7 +16,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class UserService {
-  private usersUrl = 'http://127.0.0.1:8000/users/';
+  private usersUrl = environment.API_URL + '/users/';
 
   constructor(private http: HttpClient) { }
 
@@ -35,8 +36,8 @@ export class UserService {
     );
   }
 
-  addUser(user: any): Observable<IUser> {
-    return this.http.post<IUser>(this.usersUrl, user, httpOptions)
+  createUser(user: any): Observable<IUser> {
+    return this.http.post<IUser>(this.usersUrl + 'register', user, httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
