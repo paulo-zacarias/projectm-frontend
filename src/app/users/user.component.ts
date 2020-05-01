@@ -50,8 +50,8 @@ export class UserComponent implements OnInit {
     console.log(this.user.profile.image);
   }
 
-  addUser() {
-    this.userService.addUser(this.newUser)
+  createUser() {
+    this.userService.createUser(this.newUser)
     .subscribe(user => this.users.push(user));
   }
 

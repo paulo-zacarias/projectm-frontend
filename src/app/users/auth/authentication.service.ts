@@ -49,13 +49,13 @@ export class AuthenticationService {
     );
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
     this.currentUserSubject.next(null);
   }
 
-  getLoggedUserInfo(id: number) {
+  getLoggedUserInfo(id: number): void {
     this.userService.getUser(id)
     .subscribe((user: IUser) => {
       localStorage.setItem('currentUser', JSON.stringify(user));

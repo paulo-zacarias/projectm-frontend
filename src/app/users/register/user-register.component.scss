@@ -1,0 +1,25 @@
+.user-register-card {
+    min-width: 600px;
+}
+
+.mat-container {
+    display: flex;
+    justify-content: center;
+}
+
+.form-container,
+.form-container > div {
+    min-width: 400px;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.card-header {
+    text-align: center;
+}
+
+.form-invalid-warning {
+    color: yellow; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

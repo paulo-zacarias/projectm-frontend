@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  login() {
+  login(): void {
     this.auth.login(
       this.loginForm.get('username').value,
       this.loginForm.get('password').value

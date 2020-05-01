@@ -36,8 +36,8 @@ export class UserService {
     );
   }
 
-  addUser(user: any): Observable<IUser> {
-    return this.http.post<IUser>(this.usersUrl, user, httpOptions)
+  createUser(user: any): Observable<IUser> {
+    return this.http.post<IUser>(this.usersUrl + 'register', user, httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
