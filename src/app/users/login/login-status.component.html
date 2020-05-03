@@ -8,7 +8,6 @@
 </span>
 <span *ngIf="!currentUser">
     <button mat-button [routerLink]="['/register']">Register</button>
-    <!-- <button mat-stroked-button (click)="signIn()">Login</button> -->
     <button mat-stroked-button [routerLink]="['/login']">Login</button>
 </span>
 
@@ -23,7 +22,7 @@
         </mat-card>
     </span>
     <mat-divider></mat-divider>
-    <button mat-menu-item>My profile</button>
+    <button mat-menu-item [routerLink]="['/profile']">My profile</button>
     <mat-divider></mat-divider>
     <button mat-menu-item (click)="signOut()">Sign out</button>
   </mat-menu>

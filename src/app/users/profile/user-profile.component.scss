@@ -1,0 +1,37 @@
+.mat-container {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    margin-right: 25px;
+    margin-left: 25px;
+}
+
+.form-container,
+.form-container > div {
+    min-width: 400px;
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.form-options-butttons > div {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.user-profile-picture {
+    text-align: center;
+    align-content: center;
+    margin-right: 35px;
+    color: yellow;
+}
+
+.user-profile-picture:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.form-invalid-warning {
+    color: yellow; 
+    margin-top: 10px;
+    margin-bottom: 10px;
+}

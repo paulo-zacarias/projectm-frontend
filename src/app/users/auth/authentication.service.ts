@@ -67,6 +67,10 @@ export class AuthenticationService {
     return (this.currentUserSubject.value !== null) ? true : false;
   }
 
+  get currentUserDetails(): IUser {
+    return this.currentUserSubject.value;
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
@@ -74,7 +78,8 @@ export class AuthenticationService {
     } else {
         if (error.status === 400) {
           console.error('Unable to log in with provided credentials.');
-          return throwError ('Unable to log in with provided credentials.');
+          return throwError ('Unable to log in with provided credentials.'
+          + 'Please verify that your username and password are correct.');
         } else {
           console.error(
           `Backend returned code ${error.status}, ` +
