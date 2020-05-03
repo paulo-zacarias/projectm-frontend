@@ -4,12 +4,14 @@ import { LoginComponent } from './users/login/login.component';
 import { UserComponent } from './users/user.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { UserRegisterComponent } from './users/register/user-register.component';
+import { UserProfileComponent } from './users/profile/user-profile.component';
 
 const routes: Routes = [
   { path: 'home', component: WelcomeComponent },
   { path: 'users', component: UserComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: UserRegisterComponent },
+  { path: 'profile', component: UserProfileComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 

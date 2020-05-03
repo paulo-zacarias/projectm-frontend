@@ -49,7 +49,7 @@ export class UserRegisterComponent implements OnInit {
     const confirmPassword = c.get('confirmPassword').value;
 
     return password === confirmPassword ? null : { notSame: true };
-}
+  }
 
   registerUser(): void {
     if (this.registerUserForm.valid && this.registerUserForm.touched) {
