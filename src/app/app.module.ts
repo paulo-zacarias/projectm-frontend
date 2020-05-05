@@ -16,6 +16,7 @@ import { WelcomeComponent } from './home/welcome.component';
 import { UserRegisterComponent } from './users/register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './users/profile/user-profile.component';
+import { SearchUserComponent } from './users/search-user/search-user.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UserProfileComponent } from './users/profile/user-profile.component';
     WelcomeComponent,
     UserRegisterComponent,
     UserProfileComponent,
+    SearchUserComponent,
   ],
   imports: [
     BrowserModule,
