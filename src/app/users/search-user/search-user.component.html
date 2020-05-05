@@ -1,14 +1,22 @@
-<p>search-user works!</p>
-
-<form class="example-form" [formGroup]="userListControl">
+<form [formGroup]="userListControl">
     <mat-form-field class="example-full-width">
-      <input type="text"
-             placeholder="Pick one"
-             aria-label="Number"
-             matInput
-             [formControl]="userListControl"
-             [matAutocomplete]="auto"
-             #myInput>
+        <mat-chip-list #chipList aria-label="Fruit selection">
+            <mat-chip
+              *ngFor="let user of selectedUsers"
+              [selectable]="selectable"
+              [removable]="removable"
+              (removed)="remove(user)">
+              {{user.profile.displayName}}
+              <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+            </mat-chip>
+            <input type="text"
+            placeholder="Type an email"
+            aria-label="Number"
+            matInput
+            [formControl]="userListControl"
+            [matAutocomplete]="auto"
+            #userInput>
+          </mat-chip-list>
       <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
         <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
                 {{user.profile.displayName}} - {{user.email}}
@@ -18,15 +26,3 @@
   </form>
 
   <button (click)="printFilteredResults()">Print result</button>
-
-
-  <div *ngIf="myProject">
-    <div *ngFor="let user of myProject">
-        <span>
-            <h4>{{user.username}}</h4>
-            <h6>{{user.profile.displayName}}</h6>
-            <h6>{{user.email}}</h6>
-        </span>
-  
-    </div>
-  </div>

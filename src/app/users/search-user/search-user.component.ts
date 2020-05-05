@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '../user';
 import { FormControl } from '@angular/forms';
@@ -14,9 +14,11 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 export class SearchUserComponent implements OnInit {
 
   users: IUser[];
-  myProject: IUser[] = [];
+  selectedUsers: IUser[] = [];
+  removable = true;
+  selectable = true;
 
-  @ViewChild('myInput') myInput: ElementRef<HTMLInputElement>;
+  @ViewChild('userInput') userInput: ElementRef<HTMLInputElement>;
 
   userListControl = new FormControl();
   filteredUsers: Observable<IUser[]>;
@@ -50,13 +52,23 @@ export class SearchUserComponent implements OnInit {
   }
 
   printFilteredResults() {
-    console.log(this.myProject);
+    console.log(this.selectedUsers);
     }
 
   selected(event: MatAutocompleteSelectedEvent): void {
-    this.myProject.push(event.option.value);
-    this.myInput.nativeElement.value = '';
+    const user = event.option.value;
+    if (this.selectedUsers.indexOf(user) === -1) {
+      this.selectedUsers.push(user);
+    }
+    this.userInput.nativeElement.value = '';
     this.userListControl.setValue('');
+  }
+
+  remove(user: IUser) {
+    const index = this.selectedUsers.indexOf(user);
+    if (index !== -1) {
+      this.selectedUsers.splice(index, 1, );
+    }
   }
 
 }
