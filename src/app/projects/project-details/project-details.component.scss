@@ -1,4 +1,5 @@
-.example-card {
+.project-card,
+.participants-card {
     max-width: 400px;
   }
   
@@ -18,6 +19,15 @@ p.thick {
 .admin-box {
     display: flex;
     margin-top: 10px;
+}
+
+.project-overview {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-overview > mat-card {
+    margin: 25px;
 }
 
 

@@ -17,6 +17,7 @@ import { UserRegisterComponent } from './users/register/user-register.component'
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './users/profile/user-profile.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { UserAvatarListComponent } from './user-avatar-list/user-avatar-list.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
     UserRegisterComponent,
     UserProfileComponent,
     ProjectDetailsComponent,
+    UserAvatarListComponent,
   ],
   imports: [
     BrowserModule,

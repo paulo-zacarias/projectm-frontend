@@ -36,7 +36,9 @@ export class ProjectDetailsComponent implements OnInit {
   }
 
   isProjectAdmin() {
-    return this.authService.currentUserDetails.id === this.admin.id;
+    if (this.admin) {
+      return this.authService.currentUserDetails.id === this.admin.id;
+    }
   }
 
 }

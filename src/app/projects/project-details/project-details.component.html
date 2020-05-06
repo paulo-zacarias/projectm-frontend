@@ -1,12 +1,5 @@
-<p>project-details works!</p>
-
-<div *ngFor="let participant of participants">
-    {{participant.profile.displayName}}
-    {{participant.username}}
-    {{participant.profile.image}}
-</div>
-
-<mat-card class="example-card">
+<div class="project-overview">
+  <mat-card class="project-card">
     <mat-card-content>
     <mat-card-title>{{project.name}}</mat-card-title>
       <p>
@@ -29,3 +22,18 @@
       <button mat-stroked-button>EDIT</button>
     </mat-card-actions>
   </mat-card>
+
+  <mat-card class="participants-card">
+    <mat-card-title>Participants</mat-card-title>
+    <mat-card-content>
+      <span *ngIf="participants.length === 0">
+        <p>
+          This project has no participants yet.
+        </p>
+      </span>
+      <app-user-avatar-list
+        [listOfUsers]="participants">
+      </app-user-avatar-list>
+    </mat-card-content>
+  </mat-card>
+</div>
