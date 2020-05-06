@@ -1,6 +1,12 @@
-<p>projects works!</p>
-<button (click)="printAllProjects()">Print all projects</button>
-<button (click)="printOneProject()">Get one project</button>
-<button (click)="addProject()">Add new project</button>
-<button (click)="updateProject()">Update project</button>
-<button (click)="deleteProject()">Delete project</button>
+<div class="project-list">
+    <div *ngFor="let project of projects">
+        <a [routerLink]="['/projects', project.id]">
+            <mat-card class="project-card">
+                <mat-card-content>
+                    <mat-card-title>{{project.name}}</mat-card-title>
+                    <mat-card-subtitle class="card-subtitle">{{project.description}}</mat-card-subtitle>
+                </mat-card-content>
+              </mat-card>
+        </a>
+    </div>
+</div>

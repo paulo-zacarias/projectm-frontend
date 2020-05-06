@@ -1,0 +1,31 @@
+<p>project-details works!</p>
+
+<div *ngFor="let participant of participants">
+    {{participant.profile.displayName}}
+    {{participant.username}}
+    {{participant.profile.image}}
+</div>
+
+<mat-card class="example-card">
+    <mat-card-content>
+    <mat-card-title>{{project.name}}</mat-card-title>
+      <p>
+        {{project.description}}
+      </p>
+    </mat-card-content>
+    <div *ngIf="admin">
+        Project admin:
+        <div class="admin-box">
+            <div>
+                <img mat-card-avatar src="{{admin.profile.image}}">
+            </div>
+            <div class="admin-info">
+                <p class="thick">{{admin.profile.displayName}}</p>
+                <p>{{admin.username}}</p>
+            </div>
+        </div>
+    </div>
+    <mat-card-actions *ngIf="isProjectAdmin()">
+      <button mat-stroked-button>EDIT</button>
+    </mat-card-actions>
+  </mat-card>

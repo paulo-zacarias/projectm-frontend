@@ -56,7 +56,7 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllProjects();
-    this.getOneProject();
+    // this.getOneProject();
   }
 
   deleteProject() {

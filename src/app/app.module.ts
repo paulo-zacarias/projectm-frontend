@@ -16,6 +16,7 @@ import { WelcomeComponent } from './home/welcome.component';
 import { UserRegisterComponent } from './users/register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './users/profile/user-profile.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { UserProfileComponent } from './users/profile/user-profile.component';
     WelcomeComponent,
     UserRegisterComponent,
     UserProfileComponent,
+    ProjectDetailsComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,20 @@
+.project-list {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.project-list > div > a {
+    text-decoration: none;
+}
+
+.project-card {
+    margin: 20px;
+    width: 260px;
+}
+
+.card-subtitle {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
