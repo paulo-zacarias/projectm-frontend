@@ -18,6 +18,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './users/profile/user-profile.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { UserAvatarListComponent } from './users/user-avatar-list/user-avatar-list.component';
+import { ProjectCreateComponent } from './projects/project-create/project-create.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { UserAvatarListComponent } from './users/user-avatar-list/user-avatar-li
     UserProfileComponent,
     ProjectDetailsComponent,
     UserAvatarListComponent,
+    ProjectCreateComponent,
   ],
   imports: [
     BrowserModule,

@@ -9,6 +9,7 @@ import { ProjectComponent } from './projects/project.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
 import { ProjectResolver } from './projects/resolvers/project-resolver.service';
 import { ParticipantsResolver } from './projects/resolvers/participants-resolver.service';
+import { ProjectCreateComponent } from './projects/project-create/project-create.component';
 
 const routes: Routes = [
   { path: 'home', component: WelcomeComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
     component: ProjectDetailsComponent,
     resolve: {project: ProjectResolver, participants: ParticipantsResolver}
   },
+  { path: 'projects/create-new', component: ProjectCreateComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 
