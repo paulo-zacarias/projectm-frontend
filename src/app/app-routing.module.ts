@@ -10,6 +10,7 @@ import { ProjectDetailsComponent } from './projects/project-details/project-deta
 import { ProjectResolver } from './projects/resolvers/project-resolver.service';
 import { ParticipantsResolver } from './projects/resolvers/participants-resolver.service';
 import { ProjectCreateComponent } from './projects/project-create/project-create.component';
+import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 
 const routes: Routes = [
   { path: 'home', component: WelcomeComponent },
@@ -18,12 +19,17 @@ const routes: Routes = [
   { path: 'register', component: UserRegisterComponent },
   { path: 'profile', component: UserProfileComponent },
   { path: 'projects', component: ProjectComponent },
+  { path: 'projects/create-new', component: ProjectCreateComponent },
+  {
+    path: 'projects/:id/edit',
+    component: ProjectEditComponent,
+    resolve: {project: ProjectResolver, participants: ParticipantsResolver}
+  },
   {
     path: 'projects/:id',
     component: ProjectDetailsComponent,
     resolve: {project: ProjectResolver, participants: ParticipantsResolver}
   },
-  { path: 'projects/create-new', component: ProjectCreateComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 

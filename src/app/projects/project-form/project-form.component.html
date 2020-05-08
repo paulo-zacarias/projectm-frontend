@@ -1,0 +1,35 @@
+<form novalidate
+class="form-container"
+(ngSubmit)="submitProjectForm()"
+[formGroup] ="projectForm">
+    <mat-form-field appearance="outline" color="accent">
+        <mat-label>Project name</mat-label>
+        <input matInput
+            [type]="'text'"
+            formControlName="projectName">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" color="accent">
+        <mat-label>Project description</mat-label>
+        <input matInput
+            [type]="'text'"
+            formControlName="projectDescription">
+    </mat-form-field>
+
+    <app-search-user
+    [selectedUsers]="participants"
+    (userAdded)="onUserAdded($event)"
+    (userRemoved)="onUserRemoved($event)">
+
+</app-search-user>
+
+<div class="form-options-butttons">
+    <div class="save-button">
+        <button mat-button 
+            type="submit"
+            [disabled]="projectForm.pristine">
+            SAVE
+        </button>
+    </div>
+</div>
+</form>

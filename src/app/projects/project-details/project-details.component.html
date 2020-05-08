@@ -19,7 +19,9 @@
         </div>
     </div>
     <mat-card-actions *ngIf="isProjectAdmin()">
-      <button mat-stroked-button>EDIT</button>
+      <button mat-stroked-button
+      [routerLink]="['/projects', project.id, 'edit']">
+        EDIT</button>
     </mat-card-actions>
   </mat-card>
 

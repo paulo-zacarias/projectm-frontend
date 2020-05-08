@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef, ViewChild, Output } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, Output, Input, EventEmitter } from '@angular/core';
 import { UserService } from '../user.service';
 import { IUser } from '../user';
 import { FormControl } from '@angular/forms';
@@ -13,8 +13,11 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class SearchUserComponent implements OnInit {
 
+  @Input()selectedUsers;
+  @Output() userAdded = new EventEmitter<number>();
+  @Output() userRemoved = new EventEmitter<number>();
+
   users: IUser[];
-  selectedUsers: IUser[] = [];
   removable = true;
   selectable = true;
 
@@ -51,14 +54,11 @@ export class SearchUserComponent implements OnInit {
     }
   }
 
-  printFilteredResults() {
-    console.log(this.selectedUsers);
-    }
-
   selected(event: MatAutocompleteSelectedEvent): void {
     const user = event.option.value;
     if (this.selectedUsers.indexOf(user) === -1) {
       this.selectedUsers.push(user);
+      this.userAdded.emit(user.id);
     }
     this.userInput.nativeElement.value = '';
     this.userListControl.setValue('');
@@ -68,6 +68,7 @@ export class SearchUserComponent implements OnInit {
     const index = this.selectedUsers.indexOf(user);
     if (index !== -1) {
       this.selectedUsers.splice(index, 1, );
+      this.userRemoved.emit(user.id);
     }
   }
 
