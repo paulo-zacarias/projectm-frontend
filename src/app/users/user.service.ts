@@ -73,6 +73,14 @@ export class UserService {
     );
   }
 
+  getProjectParticipants(projectId: number): Observable<IUser[]> {
+    return this.http.get<IUser[]>(this.usersUrl + '?project_id=' + projectId)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.

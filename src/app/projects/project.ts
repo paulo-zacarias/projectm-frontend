@@ -1,7 +1,7 @@
 export interface IProject {
-    url: string;
+    id: number;
     name: string;
     description: string;
-    admin: string;
-    participants: string[];
+    admin: number;
+    participants: number[];
 }

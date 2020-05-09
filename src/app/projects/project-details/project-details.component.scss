@@ -1,0 +1,33 @@
+.project-card,
+.participants-card {
+    max-width: 400px;
+  }
+  
+.admin-info {
+    margin-left: 10px;
+}
+
+.admin-info > p {
+    margin: 0px;
+}
+
+p.thick {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.admin-box {
+    display: flex;
+    margin-top: 10px;
+}
+
+.project-overview {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.project-overview > mat-card {
+    margin: 25px;
+}
+
+
