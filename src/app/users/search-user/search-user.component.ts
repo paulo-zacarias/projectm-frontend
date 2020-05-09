@@ -13,13 +13,13 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 })
 export class SearchUserComponent implements OnInit {
 
-  @Input()selectedUsers;
+  @Input()selectedUsers: IUser[];
   @Output() userAdded = new EventEmitter<number>();
   @Output() userRemoved = new EventEmitter<number>();
 
   users: IUser[];
   removable = true;
-  selectable = true;
+  selectable = false;
 
   @ViewChild('userInput') userInput: ElementRef<HTMLInputElement>;
 

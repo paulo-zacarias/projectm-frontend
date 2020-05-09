@@ -34,18 +34,19 @@ export class ProjectFormComponent implements OnInit {
   }
 
   onUserAdded(userId: number) {
-    this.project.participants.push(userId);
-    console.log(this.project.participants);
-    console.log("Added:", userId);
+    this.projectForm.markAsDirty();
+    const index = this.project.participants.indexOf(userId);
+    if (index === -1) {
+      this.project.participants.push(userId);
+    }
   }
 
   onUserRemoved(userId: number) {
-    console.log("Removed: ", userId);
+    this.projectForm.markAsDirty();
     const index = this.project.participants.indexOf(userId);
     if (index !== -1) {
       this.project.participants.splice(index, 1, );
     }
-    console.log(this.project.participants);
   }
 
 }
