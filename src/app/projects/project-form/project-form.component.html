@@ -1,0 +1,44 @@
+<mat-card class="form-container">
+    <mat-card-title class="element-bottom-margin">
+        Project details
+    </mat-card-title>
+    <mat-card-content>
+        <form novalidate
+        class="form-container"
+        (ngSubmit)="submitProjectForm()"
+        [formGroup] ="projectForm">
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Project name</mat-label>
+                <input matInput
+                    [type]="'text'"
+                    formControlName="projectName">
+            </mat-form-field>
+    
+            <mat-form-field appearance="outline" color="accent">
+                <mat-label>Project description</mat-label>
+                <input matInput
+                    [type]="'text'"
+                    formControlName="projectDescription">
+            </mat-form-field>
+
+            <div class="element-bottom-margin">
+                <p>Participants:</p>
+                <app-search-user
+                    [selectedUsers]="participants"
+                    (userAdded)="onUserAdded($event)"
+                    (userRemoved)="onUserRemoved($event)">
+                </app-search-user>
+            </div>
+   
+            <div class="form-options-butttons">
+                <div class="save-button">
+                    <button mat-stroked-button
+                        type="submit"
+                        [disabled]="projectForm.pristine">
+                        SAVE
+                    </button>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>  

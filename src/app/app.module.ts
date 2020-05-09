@@ -16,6 +16,12 @@ import { WelcomeComponent } from './home/welcome.component';
 import { UserRegisterComponent } from './users/register/user-register.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UserProfileComponent } from './users/profile/user-profile.component';
+import { SearchUserComponent } from './users/search-user/search-user.component';
+import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
+import { UserAvatarListComponent } from './users/user-avatar-list/user-avatar-list.component';
+import { ProjectCreateComponent } from './projects/project-create/project-create.component';
+import { ProjectFormComponent } from './projects/project-form/project-form.component';
+import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +34,12 @@ import { UserProfileComponent } from './users/profile/user-profile.component';
     WelcomeComponent,
     UserRegisterComponent,
     UserProfileComponent,
+    ProjectDetailsComponent,
+    SearchUserComponent,
+    UserAvatarListComponent,
+    ProjectCreateComponent,
+    ProjectFormComponent,
+    ProjectEditComponent,
   ],
   imports: [
     BrowserModule,

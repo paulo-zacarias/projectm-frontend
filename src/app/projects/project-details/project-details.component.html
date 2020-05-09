@@ -1,0 +1,41 @@
+<div class="project-overview">
+  <mat-card class="project-card">
+    <mat-card-content>
+    <mat-card-title>{{project.name}}</mat-card-title>
+      <p>
+        {{project.description}}
+      </p>
+    </mat-card-content>
+    <div *ngIf="admin">
+        Project admin:
+        <div class="admin-box">
+            <div>
+                <img mat-card-avatar src="{{admin.profile.image}}">
+            </div>
+            <div class="admin-info">
+                <p class="thick">{{admin.profile.displayName}}</p>
+                <p>{{admin.username}}</p>
+            </div>
+        </div>
+    </div>
+    <mat-card-actions *ngIf="isProjectAdmin()">
+      <button mat-stroked-button
+      [routerLink]="['/projects', project.id, 'edit']">
+        EDIT</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="participants-card">
+    <mat-card-title>Participants</mat-card-title>
+    <mat-card-content>
+      <span *ngIf="participants.length === 0">
+        <p>
+          This project has no participants yet.
+        </p>
+      </span>
+      <app-user-avatar-list
+        [listOfUsers]="participants">
+      </app-user-avatar-list>
+    </mat-card-content>
+  </mat-card>
+</div>
