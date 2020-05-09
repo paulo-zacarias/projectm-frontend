@@ -1,7 +1,7 @@
 export interface ISprint {
     id: number;
-    startDate: Date;
-    endEnd: Date;
+    startDate: string;
+    endDate: string;
     plannedStoryPoints: number;
     project: number;
     tasks: number[];

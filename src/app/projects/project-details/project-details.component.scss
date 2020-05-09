@@ -24,6 +24,7 @@ p.thick {
 .project-overview {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .project-overview > mat-card {

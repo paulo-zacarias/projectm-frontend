@@ -22,6 +22,8 @@ import { UserAvatarListComponent } from './users/user-avatar-list/user-avatar-li
 import { ProjectCreateComponent } from './projects/project-create/project-create.component';
 import { ProjectFormComponent } from './projects/project-form/project-form.component';
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
+import { SprintComponent } from './sprints/sprint.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,7 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
     ProjectCreateComponent,
     ProjectFormComponent,
     ProjectEditComponent,
+    SprintComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

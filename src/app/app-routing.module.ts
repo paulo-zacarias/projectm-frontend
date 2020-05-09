@@ -11,6 +11,7 @@ import { ProjectResolver } from './projects/resolvers/project-resolver.service';
 import { ParticipantsResolver } from './projects/resolvers/participants-resolver.service';
 import { ProjectCreateComponent } from './projects/project-create/project-create.component';
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
+import { SprintComponent } from './sprints/sprint.component';
 
 const routes: Routes = [
   { path: 'home', component: WelcomeComponent },
@@ -30,6 +31,7 @@ const routes: Routes = [
     component: ProjectDetailsComponent,
     resolve: {project: ProjectResolver, participants: ParticipantsResolver}
   },
+  { path: 'sprints', component: SprintComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 
