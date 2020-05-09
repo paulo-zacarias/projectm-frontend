@@ -12,8 +12,10 @@ import { ParticipantsResolver } from './projects/resolvers/participants-resolver
 import { ProjectCreateComponent } from './projects/project-create/project-create.component';
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 import { SprintComponent } from './sprints/sprint.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 const routes: Routes = [
+  { path: '', component: NavigationComponent },
   { path: 'home', component: WelcomeComponent },
   { path: 'users', component: UserComponent },
   { path: 'login', component: LoginComponent },

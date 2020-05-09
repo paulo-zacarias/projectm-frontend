@@ -25,10 +25,29 @@ p.thick {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
+    height: 100%;
 }
 
 .project-overview > mat-card {
     margin: 25px;
 }
+
+.sidenav-container {
+    height: 100%;
+  }
+  
+  .sidenav {
+    width: 200px;
+  }
+  
+  .sidenav .mat-toolbar {
+    background: inherit;
+  }
+  
+  .mat-toolbar.mat-primary {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+  }
 
 

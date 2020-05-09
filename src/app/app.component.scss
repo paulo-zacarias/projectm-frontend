@@ -1,1 +1,25 @@
+// .content {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   padding: 100px;
+//   background: inherit;
+// //   height: 80%;
+// }
 
+
+.toolbar-container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toolbar-head {
+    // width: 100%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+.material-icons.md-36 {
+    font-size: 36px; 
+}

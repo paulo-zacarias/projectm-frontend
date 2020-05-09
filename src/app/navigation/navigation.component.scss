@@ -1,6 +1,6 @@
 .sidenav-container {
   height: 100%;
-  overflow: hidden;
+  // overflow: hidden;
 }
 
 .sidenav {
@@ -17,15 +17,15 @@
   z-index: 1;
 }
 
-.toolbar-container {
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-}
+// .toolbar-container {
+//   width: 100%;
+//   display: flex;
+//   justify-content: flex-end;
+// }
 
-.sidenav-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
+// .sidenav-content {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   height: 100%;
+// }
