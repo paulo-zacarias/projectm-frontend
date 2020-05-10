@@ -4,9 +4,6 @@ import { IProject } from '../project';
 import { IUser } from 'src/app/users/user';
 import { UserService } from 'src/app/users/user.service';
 import { AuthenticationService } from 'src/app/users/auth/authentication.service';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
 
 @Component({
   selector: 'app-project-details',
@@ -19,14 +16,7 @@ export class ProjectDetailsComponent implements OnInit {
   admin: IUser;
   participants: IUser[];
 
-  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
-  .pipe(
-    map(result => result.matches),
-    shareReplay()
-  );
-
   constructor(
-      private breakpointObserver: BreakpointObserver,
       private userService: UserService,
       private route: ActivatedRoute,
       private authService: AuthenticationService

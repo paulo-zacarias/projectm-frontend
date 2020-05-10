@@ -24,6 +24,13 @@ import { ProjectFormComponent } from './projects/project-form/project-form.compo
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 import { SprintComponent } from './sprints/sprint.component';
 import { DatePipe } from '@angular/common';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
 
 @NgModule({
   declarations: [
@@ -43,6 +50,7 @@ import { DatePipe } from '@angular/common';
     ProjectFormComponent,
     ProjectEditComponent,
     SprintComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,7 +58,13 @@ import { DatePipe } from '@angular/common';
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule
   ],
   providers: [
     {

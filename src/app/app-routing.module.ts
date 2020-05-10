@@ -13,6 +13,7 @@ import { ProjectCreateComponent } from './projects/project-create/project-create
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 import { SprintComponent } from './sprints/sprint.component';
 import { NavigationComponent } from './navigation/navigation.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   { path: '', component: NavigationComponent },
@@ -21,17 +22,21 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: UserRegisterComponent },
   { path: 'profile', component: UserProfileComponent },
-  { path: 'projects', component: ProjectComponent },
-  { path: 'projects/create-new', component: ProjectCreateComponent },
-  {
-    path: 'projects/:id/edit',
-    component: ProjectEditComponent,
-    resolve: {project: ProjectResolver, participants: ParticipantsResolver}
-  },
-  {
-    path: 'projects/:id',
-    component: ProjectDetailsComponent,
-    resolve: {project: ProjectResolver, participants: ParticipantsResolver}
+  { path: 'projects', component: NavigationComponent,
+    children: [
+      { path: '', component: ProjectComponent },
+      { path: 'create-new', component: ProjectCreateComponent },
+      {
+        path: ':id/edit',
+        component: ProjectEditComponent,
+        resolve: {project: ProjectResolver, participants: ParticipantsResolver}
+      },
+      {
+        path: ':id',
+        component: ProjectDetailsComponent,
+        resolve: {project: ProjectResolver, participants: ParticipantsResolver}
+      },
+    ]
   },
   { path: 'sprints', component: SprintComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full'},

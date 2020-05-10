@@ -1,74 +1,41 @@
-<mat-toolbar color="primary">
-  <button
-    type="button"
-    aria-label="Toggle sidenav"
-    mat-icon-button
-    (click)="drawer.toggle()"
-    *ngIf="isHandset$ | async">
-    <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-  </button>
-  <span>Projects</span>
-  <!-- <div class="toolbar-container">
-    <span>
-      <app-login-status></app-login-status>
-    </span>
-  </div> -->
-</mat-toolbar>
-<mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav mat-elevation-z15"
-      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-      [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false"
-
-      >
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item [routerLink]="['/projects']">Project list</a>
-      <a mat-list-item [routerLink]="['/sprints']">Sprints</a>
-      <a mat-list-item href="#">Link 3</a>
-    </mat-nav-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
-    <div class="project-overview">
-      <mat-card class="project-card">
-        <mat-card-content>
-        <mat-card-title>{{project.name}}</mat-card-title>
-          <p>
-            {{project.description}}
-          </p>
-        </mat-card-content>
-        <div *ngIf="admin">
-            Project admin:
-            <div class="admin-box">
-                <div>
-                    <img mat-card-avatar src="{{admin.profile.image}}">
-                </div>
-                <div class="admin-info">
-                    <p class="thick">{{admin.profile.displayName}}</p>
-                    <p>{{admin.username}}</p>
-                </div>
+<div class="project-overview">
+  <mat-card class="project-card">
+    <mat-card-content>
+    <mat-card-title>{{project.name}}</mat-card-title>
+      <p>
+        {{project.description}}
+      </p>
+    </mat-card-content>
+    <div *ngIf="admin">
+        Project admin:
+        <div class="admin-box">
+            <div>
+                <img mat-card-avatar src="{{admin.profile.image}}">
+            </div>
+            <div class="admin-info">
+                <p class="thick">{{admin.profile.displayName}}</p>
+                <p>{{admin.username}}</p>
             </div>
         </div>
-        <mat-card-actions *ngIf="isProjectAdmin()">
-          <button mat-stroked-button
-          [routerLink]="['/projects', project.id, 'edit']">
-            EDIT</button>
-        </mat-card-actions>
-      </mat-card>
-    
-      <mat-card class="participants-card">
-        <mat-card-title>Participants</mat-card-title>
-        <mat-card-content>
-          <span *ngIf="participants.length === 0">
-            <p>
-              This project has no participants yet.
-            </p>
-          </span>
-          <app-user-avatar-list
-            [listOfUsers]="participants">
-          </app-user-avatar-list>
-        </mat-card-content>
-      </mat-card>
     </div>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+    <mat-card-actions *ngIf="isProjectAdmin()">
+      <button mat-stroked-button
+      [routerLink]="['/projects', project.id, 'edit']">
+        EDIT</button>
+    </mat-card-actions>
+  </mat-card>
+
+  <mat-card class="participants-card">
+    <mat-card-title>Participants</mat-card-title>
+    <mat-card-content>
+      <span *ngIf="participants.length === 0">
+        <p>
+          This project has no participants yet.
+        </p>
+      </span>
+      <app-user-avatar-list
+        [listOfUsers]="participants">
+      </app-user-avatar-list>
+    </mat-card-content>
+  </mat-card>
+</div>

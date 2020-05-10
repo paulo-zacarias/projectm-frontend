@@ -16,7 +16,7 @@ export class SprintComponent implements OnInit {
   projectSprints: ISprint[];
   sprint: ISprint;
 
-  date: Date = new Date("2020-06-17");
+  date: Date = new Date('2020-06-17');
 
   tasks: number[];
 
