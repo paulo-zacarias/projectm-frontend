@@ -14,9 +14,10 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
 import { SprintComponent } from './sprints/sprint.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { ProjectSprintsResolverService } from './projects/resolvers/project-sprints-resolver.service';
 
 const routes: Routes = [
-  { path: '', component: NavigationComponent },
+  { path: '', component: DashboardComponent },
   { path: 'home', component: WelcomeComponent },
   { path: 'users', component: UserComponent },
   { path: 'login', component: LoginComponent },
@@ -29,16 +30,17 @@ const routes: Routes = [
       {
         path: ':id/edit',
         component: ProjectEditComponent,
-        resolve: {project: ProjectResolver, participants: ParticipantsResolver}
+        resolve: {project: ProjectResolver, participants: ParticipantsResolver }
       },
+      { path: ':id/sprints', component: SprintComponent, resolve: {project: ProjectResolver}},
       {
         path: ':id',
         component: ProjectDetailsComponent,
-        resolve: {project: ProjectResolver, participants: ParticipantsResolver}
+        resolve: {project: ProjectResolver, participants: ParticipantsResolver, sprints: ProjectSprintsResolverService}
       },
     ]
   },
-  { path: 'sprints', component: SprintComponent},
+  // { path: 'sprints', component: SprintComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 

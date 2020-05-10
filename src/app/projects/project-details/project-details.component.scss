@@ -1,7 +1,7 @@
-.project-card,
-.participants-card {
-    max-width: 400px;
-  }
+// .project-card,
+// .participants-card {
+//     max-width: 400px;
+//   }
   
 .admin-info {
     margin-left: 10px;
@@ -21,14 +21,44 @@ p.thick {
     margin-top: 10px;
 }
 
-.project-overview {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
+// .project-overview {
+//     display: flex;
+//     flex-wrap: wrap;
+//     align-items: center;
+// }
 
-.project-overview > mat-card {
-    margin: 25px;
-}
+// .project-overview > mat-card {
+//     margin: 25px;
+// }
 
+.grid-container {
+    margin: 20px;
+  }
+  
+  .dashboard-card {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    bottom: 15px;
+  }
+  
+  .more-button {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+  }
+  
+  .dashboard-card-content {
+    text-align: left;
+  }
 
+  .mat-chip {
+    max-width: 200px;
+  }
+
+  .sprint-link {
+      color: inherit;
+      text-decoration: none;
+  }
+  

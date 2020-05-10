@@ -4,6 +4,7 @@ import { IProject } from '../project';
 import { IUser } from 'src/app/users/user';
 import { UserService } from 'src/app/users/user.service';
 import { AuthenticationService } from 'src/app/users/auth/authentication.service';
+import { ISprint } from 'src/app/sprints/sprint';
 
 @Component({
   selector: 'app-project-details',
@@ -15,6 +16,7 @@ export class ProjectDetailsComponent implements OnInit {
   project: IProject;
   admin: IUser;
   participants: IUser[];
+  sprints: ISprint[];
 
   constructor(
       private userService: UserService,
@@ -25,6 +27,7 @@ export class ProjectDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.project = this.route.snapshot.data.project;
     this.participants = this.route.snapshot.data.participants;
+    this.sprints = this.route.snapshot.data.sprints;
     this.getAdminDetails(this.project.admin);
   }
 
