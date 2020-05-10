@@ -24,6 +24,7 @@ import { ProjectFormComponent } from './projects/project-form/project-form.compo
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 import { SprintComponent } from './sprints/sprint.component';
 import { DatePipe } from '@angular/common';
+import { TaskComponent } from './tasks/task.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DatePipe } from '@angular/common';
     ProjectFormComponent,
     ProjectEditComponent,
     SprintComponent,
+    TaskComponent,
   ],
   imports: [
     BrowserModule,
