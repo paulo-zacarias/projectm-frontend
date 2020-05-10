@@ -24,6 +24,7 @@ import { ProjectFormComponent } from './projects/project-form/project-form.compo
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
 import { SprintComponent } from './sprints/sprint.component';
 import { DatePipe } from '@angular/common';
+import { TaskComponent } from './tasks/task.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -50,6 +51,7 @@ import { LayoutModule } from '@angular/cdk/layout';
     ProjectFormComponent,
     ProjectEditComponent,
     SprintComponent,
+    TaskComponent,
     DashboardComponent,
   ],
   imports: [
