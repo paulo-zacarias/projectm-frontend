@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ProjectSprintsResolverService } from './project-sprints-resolver.service';
+import { ProjectSprintsResolver } from './project-sprints-resolver.service';
 
-describe('ProjectSprintsResolverService', () => {
-  let service: ProjectSprintsResolverService;
+describe('ProjectSprintsResolver', () => {
+  let service: ProjectSprintsResolver;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(ProjectSprintsResolverService);
+    service = TestBed.inject(ProjectSprintsResolver);
   });
 
   it('should be created', () => {

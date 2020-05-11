@@ -6,10 +6,10 @@
         <mat-card-header>
           <mat-card-title>
             {{project.name}}
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu_project" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" xPosition="before">
+            <mat-menu #menu_project="matMenu" xPosition="before">
               <button mat-menu-item *ngIf="isProjectAdmin()"
                 [routerLink]="['/projects', project.id, 'edit']">
                 Edit
@@ -46,10 +46,10 @@
         <mat-card-header>
           <mat-card-title>
             Participants
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu_participants" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" xPosition="before">
+            <mat-menu #menu_participants="matMenu" xPosition="before">
               <button mat-menu-item>Expand</button>
               <button mat-menu-item>Remove</button>
             </mat-menu>
@@ -74,10 +74,10 @@
         <mat-card-header>
           <mat-card-title>
             Sprints
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu_sprints" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
             </button>
-            <mat-menu #menu="matMenu" xPosition="before">
+            <mat-menu #menu_sprints="matMenu" xPosition="before">
               <button mat-menu-item>Expand</button>
               <button mat-menu-item>Remove</button>
             </mat-menu>
@@ -89,7 +89,7 @@
               <mat-chip *ngFor="let sprint of sprints | slice:0:5; index as i" 
                 selected
                 [color]="i==0 ? 'primary' : 'accent'">
-                <a class="sprint-link" [routerLink]="['']">
+                <a class="sprint-link" [routerLink]="['sprints/' + sprint.id]">
                   {{i+1}}. {{sprint.startDate}} - {{sprint.endDate}}
                 </a>
               </mat-chip>

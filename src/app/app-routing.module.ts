@@ -14,7 +14,10 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
 import { SprintComponent } from './sprints/sprint.component';
 import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { ProjectSprintsResolverService } from './projects/resolvers/project-sprints-resolver.service';
+import { ProjectSprintsResolver } from './projects/resolvers/project-sprints-resolver.service';
+import { TaskComponent } from './tasks/task.component';
+import { SprintResolver } from './sprints/resolvers/sprint-resolver.service';
+import { SprintTasksResolver } from './sprints/resolvers/sprint-tasks-resolver.service';
 
 const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -33,14 +36,18 @@ const routes: Routes = [
         resolve: {project: ProjectResolver, participants: ParticipantsResolver }
       },
       { path: ':id/sprints', component: SprintComponent, resolve: {project: ProjectResolver}},
+      { path: ':id/sprints/:id', component: SprintComponent,
+        resolve: {sprint: SprintResolver, tasks: SprintTasksResolver}},
       {
         path: ':id',
         component: ProjectDetailsComponent,
-        resolve: {project: ProjectResolver, participants: ParticipantsResolver, sprints: ProjectSprintsResolverService}
+        resolve: {project: ProjectResolver, participants: ParticipantsResolver, sprints: ProjectSprintsResolver}
       },
     ]
   },
   // { path: 'sprints', component: SprintComponent},
+  // { path: 'sprints/:id', component: SprintComponent},
+  { path: 'tasks', component: TaskComponent},
   { path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 

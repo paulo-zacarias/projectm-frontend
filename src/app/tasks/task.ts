@@ -1,22 +1,22 @@
 export interface ITask {
     title: string;
     description: string;
-    weight: Weight;
+    weight: number;
     storyPoints: number;
-    status: Status;
+    status: number;
     assignedPerson: number;
     project: number;
 }
 
 export enum Status {
-    ToDo,
-    InProgress,
-    Done
+    'To do',
+    'In Progress',
+    'Done'
 }
 
 export enum Weight {
-    Low,
-    Medium,
-    High,
-    Critical
+    'Low',
+    'Medium',
+    'High',
+    'Critical'
 }

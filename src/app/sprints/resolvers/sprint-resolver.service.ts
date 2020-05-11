@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { SprintService } from 'src/app/sprints/sprint.service';
+import { SprintService } from '../sprint.service';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
-import { ISprint } from 'src/app/sprints/sprint';
+import { ISprint } from '../sprint';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ProjectSprintsResolver {
+export class SprintResolver {
 
   constructor(private sprintService: SprintService) { }
 
-  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ISprint[]> {
+  resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<ISprint> {
     const id = +route.paramMap.get('id');
-    return this.sprintService.getSprintsByProject(id);
+    return this.sprintService.getSprint(id);
   }
 }

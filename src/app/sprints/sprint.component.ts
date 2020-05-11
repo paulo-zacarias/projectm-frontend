@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { SprintService } from './sprint.service';
 import { ISprint } from './sprint';
 import { DatePipe } from '@angular/common';
+import { ActivatedRoute } from '@angular/router';
+import { ITask } from '../tasks/Task';
 
 @Component({
   selector: 'app-sprint',
@@ -10,7 +12,11 @@ import { DatePipe } from '@angular/common';
 })
 export class SprintComponent implements OnInit {
 
-  constructor(private sprintService: SprintService, public datepipe: DatePipe) { }
+  constructor(
+    private sprintService: SprintService,
+    private route: ActivatedRoute,
+    public datepipe: DatePipe,
+    ) { }
 
   sprints: ISprint[];
   projectSprints: ISprint[];
@@ -18,7 +24,8 @@ export class SprintComponent implements OnInit {
 
   date: Date = new Date('2020-06-17');
 
-  tasks: number[];
+  // tasks: number[];
+  tasks: ITask;
 
 
   newSprint = {
@@ -31,7 +38,11 @@ export class SprintComponent implements OnInit {
   ngOnInit(): void {
     this.getAllSprints();
     this.getProjectSprints();
-    this.getSprint();
+    // this.getSprint();
+    this.sprint = this.route.snapshot.data.sprint;
+    this.tasks = this.route.snapshot.data.tasks;
+    console.log(this.sprint);
+    console.log(this.tasks);
   }
 
   getAllSprints() {
@@ -67,7 +78,7 @@ export class SprintComponent implements OnInit {
   }
 
   addTasksToSprint() {
-    this.tasks = [1, 2];
+    // this.tasks = [1, 2];
     const updatedTasksSprint = {
       tasks: this.tasks
     };
