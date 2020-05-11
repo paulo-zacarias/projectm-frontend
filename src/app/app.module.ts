@@ -32,6 +32,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { LayoutModule } from '@angular/cdk/layout';
+import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
+import { DragDropComponent } from './drag-drop/drag-drop.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 @NgModule({
   declarations: [
@@ -53,6 +56,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     SprintComponent,
     TaskComponent,
     DashboardComponent,
+    SprintCreateComponent,
+    DragDropComponent,
   ],
   imports: [
     BrowserModule,
@@ -66,7 +71,8 @@ import { LayoutModule } from '@angular/cdk/layout';
     MatMenuModule,
     MatIconModule,
     MatButtonModule,
-    LayoutModule
+    LayoutModule,
+    DragDropModule
   ],
   providers: [
     {

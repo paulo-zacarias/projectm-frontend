@@ -54,7 +54,7 @@
                         <input matInput [errorStateMatcher]="matcher"
                             [type]="'password'"
                             formControlName="confirmPassword">
-                            <mat-error *ngIf="registerUserForm.get('passwordGroup').invalid">Password doesn't match</mat-error>
+                        <mat-error *ngIf="registerUserForm.get('passwordGroup').invalid">Password doesn't match</mat-error>
                     </mat-form-field>
                 </div>
 

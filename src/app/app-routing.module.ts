@@ -18,9 +18,11 @@ import { ProjectSprintsResolver } from './projects/resolvers/project-sprints-res
 import { TaskComponent } from './tasks/task.component';
 import { SprintResolver } from './sprints/resolvers/sprint-resolver.service';
 import { SprintTasksResolver } from './sprints/resolvers/sprint-tasks-resolver.service';
+import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
+import { DragDropComponent } from './drag-drop/drag-drop.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardComponent },
+  { path: '', component: DragDropComponent },
   { path: 'home', component: WelcomeComponent },
   { path: 'users', component: UserComponent },
   { path: 'login', component: LoginComponent },
@@ -45,6 +47,7 @@ const routes: Routes = [
       },
     ]
   },
+  { path: 'sprint-new', component: SprintCreateComponent},
   // { path: 'sprints', component: SprintComponent},
   // { path: 'sprints/:id', component: SprintComponent},
   { path: 'tasks', component: TaskComponent},
