@@ -1,9 +1,33 @@
-<p>sprint works!</p>
+<div class="container"> 
+  <div>
+    <form>
+      <mat-form-field class="sprint-selector">
+        <mat-label>Select sprint</mat-label>
+        <mat-select [(value)]="selectedSprint" name="food" (selectionChange)="selected($event)">
+          <mat-option *ngFor="let sprint of sprints" [value]="sprint">
+            {{sprint.id}}. {{sprint.startDate}} - {{sprint.endDate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
 
-<button (click)="printAllSprints()">All sprints</button>
-<button (click)="printProjectSprints()">Project sprints</button>
-<button (click)="printOneSprint()">One sprint</button>
-<button (click)="createSprint()">Create sprint</button>
-<button (click)="updateSprint()">Update sprint</button>
-<button (click)="deleteSprint()">Delete sprint</button>
-<button (click)="addTasksToSprint()">Add tasks to sprint</button>
+  <div *ngIf="allowCreateSprint()" class="button-container">
+    <button mat-button (click)="showCreateSprint()">
+      <mat-icon
+      class="material-icons md-36" aria-label="project icon">
+      add_circle
+    </mat-icon>
+    Add new
+    </button>
+  </div>
+
+</div>
+
+<div *ngIf="viewCreateSprint">
+  <app-sprint-create>
+    
+  </app-sprint-create>
+</div>
+
+<router-outlet></router-outlet>

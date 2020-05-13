@@ -1,5 +1,3 @@
-<p>sprint-create works!</p>
-
 <form
     (ngSubmit)="saveSprint()"
     [formGroup] ="sprintForm">
@@ -24,19 +22,3 @@
     ADD SPRINT
     </button>
 </form>
-
-<div>
-    {{sprintForm.get("startDate").value}}
-</div>
-
-<div>
-    {{sprintForm.get("endDate").value}}
-</div>
-
-<div>
-    {{sprintForm.hasError('invalidDates')}}
-</div>
-
-<div>
-    {{sprintForm.invalid}}
-</div>

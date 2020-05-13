@@ -14,7 +14,7 @@ import { LoginComponent } from './users/login/login.component';
 import { LoginStatusComponent } from './users/login/login-status.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { UserRegisterComponent } from './users/register/user-register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserProfileComponent } from './users/profile/user-profile.component';
 import { SearchUserComponent } from './users/search-user/search-user.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
@@ -35,6 +35,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
 import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TaskTileComponent } from './tasks/task-tile/task-tile.component';
+import { TasksWallComponent } from './tasks/tasks-wall/tasks-wall.component';
 
 @NgModule({
   declarations: [
@@ -58,6 +60,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     DashboardComponent,
     SprintCreateComponent,
     DragDropComponent,
+    TaskTileComponent,
+    TasksWallComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,8 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     MatIconModule,
     MatButtonModule,
     LayoutModule,
-    DragDropModule
+    DragDropModule,
+    FormsModule
   ],
   providers: [
     {

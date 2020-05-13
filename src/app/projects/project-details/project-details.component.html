@@ -85,6 +85,7 @@
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
           <div>
+            <div *ngIf="sprints.length === 0"> There are no sprints in this project yet.</div>
             <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
               <mat-chip *ngFor="let sprint of sprints | slice:0:5; index as i" 
                 selected

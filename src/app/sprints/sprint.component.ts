@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { SprintService } from './sprint.service';
 import { ISprint } from './sprint';
-import { DatePipe } from '@angular/common';
-import { ActivatedRoute } from '@angular/router';
-import { ITask } from '../tasks/Task';
+import { SprintService } from './sprint.service';
+import { MatSelectChange } from '@angular/material/select';
+import { Router, ActivatedRoute } from '@angular/router';
+import { AuthenticationService } from '../users/auth/authentication.service';
+import { IProject } from '../projects/project';
 
 @Component({
   selector: 'app-sprint',
@@ -12,96 +13,37 @@ import { ITask } from '../tasks/Task';
 })
 export class SprintComponent implements OnInit {
 
+  sprints: ISprint[];
+  project: IProject;
+  selectedSprintId: number;
+  selectedSprint: ISprint;
+  viewCreateSprint = false;
+
   constructor(
     private sprintService: SprintService,
+    private router: Router,
     private route: ActivatedRoute,
-    public datepipe: DatePipe,
-    ) { }
-
-  sprints: ISprint[];
-  projectSprints: ISprint[];
-  sprint: ISprint;
-
-  date: Date = new Date('2020-06-17');
-
-  // tasks: number[];
-  tasks: ITask;
-
-
-  newSprint = {
-    startDate: '2020-06-03',
-    endDate: '2020-06-13',
-    project: 1,
-    tasks: []
-};
+    private authService: AuthenticationService) {}
 
   ngOnInit(): void {
-    this.getAllSprints();
-    this.getProjectSprints();
-    // this.getSprint();
-    this.sprint = this.route.snapshot.data.sprint;
-    this.tasks = this.route.snapshot.data.tasks;
-    console.log(this.sprint);
-    console.log(this.tasks);
+    this.project = this.route.snapshot.data.project;
+    this.sprints = this.route.snapshot.data.sprints;
+    // Workaround to get selected sprint from child component/route:
+    const selectedSprintId = +this.route.firstChild.snapshot.paramMap.get('id');
+    this.selectedSprint = this.sprints.find(sprint => sprint.id === selectedSprintId);
   }
 
-  getAllSprints() {
-    this.sprintService.getSprints()
-    .subscribe((sprints: ISprint[]) => {
-      this.sprints = sprints;
-    });
+  selected(event: MatSelectChange): void {
+    const sprint: ISprint = event.value;
+    this.router.navigateByUrl('/projects/' + sprint.project + '/sprints/' + sprint.id);
   }
 
-  getProjectSprints() {
-    this.sprintService.getSprintsByProject(2)
-    .subscribe((sprints: ISprint[]) => {
-      this.projectSprints = sprints;
-    });
+  showCreateSprint() {
+    this.viewCreateSprint = !this.viewCreateSprint;
   }
 
-  getSprint() {
-    this.sprintService.getSprint(8)
-    .subscribe((sprint: ISprint) => {
-      this.sprint = sprint;
-    });
-  }
-
-  createSprint() {
-    this.sprintService.addSprint(this.newSprint)
-    .subscribe(sprint => this.sprints.push(sprint));
-  }
-
-  updateSprint() {
-    this.sprint.endDate = this.datepipe.transform(this.date, 'yyyy-MM-dd');
-    this.sprintService.updateSprint(8, this.sprint)
-    .subscribe(sprint => this.sprint = sprint);
-  }
-
-  addTasksToSprint() {
-    // this.tasks = [1, 2];
-    const updatedTasksSprint = {
-      tasks: this.tasks
-    };
-
-    this.sprintService.updateSprintTasks(8, updatedTasksSprint)
-    .subscribe(sprint => this.sprint = sprint);
-    console.log(this.sprint);
-  }
-
-  deleteSprint() {
-    this.sprintService.deleteSprint(9).subscribe();
-  }
-
-  printAllSprints() {
-    console.log(this.sprints);
-  }
-
-  printProjectSprints() {
-    console.log(this.projectSprints);
-  }
-
-  printOneSprint() {
-    console.log(this.sprint);
+  allowCreateSprint() {
+    return !this.viewCreateSprint && this.authService.currentUserDetails.id === this.project.admin;
   }
 
 }

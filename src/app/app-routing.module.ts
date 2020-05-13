@@ -20,9 +20,11 @@ import { SprintResolver } from './sprints/resolvers/sprint-resolver.service';
 import { SprintTasksResolver } from './sprints/resolvers/sprint-tasks-resolver.service';
 import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
 import { DragDropComponent } from './drag-drop/drag-drop.component';
+import { TaskTileComponent } from './tasks/task-tile/task-tile.component';
+import { TasksWallComponent } from './tasks/tasks-wall/tasks-wall.component';
 
 const routes: Routes = [
-  { path: '', component: DragDropComponent },
+  { path: '', component: SprintComponent },
   { path: 'home', component: WelcomeComponent },
   { path: 'users', component: UserComponent },
   { path: 'login', component: LoginComponent },
@@ -37,9 +39,13 @@ const routes: Routes = [
         component: ProjectEditComponent,
         resolve: {project: ProjectResolver, participants: ParticipantsResolver }
       },
-      { path: ':id/sprints', component: SprintComponent, resolve: {project: ProjectResolver}},
-      { path: ':id/sprints/:id', component: SprintComponent,
-        resolve: {sprint: SprintResolver, tasks: SprintTasksResolver}},
+      { path: ':id/sprints', component: SprintComponent, resolve: {project: ProjectResolver, sprints: ProjectSprintsResolver },
+        children: [
+        { path: ':id', component: TasksWallComponent, resolve: {sprint: SprintResolver, tasks: SprintTasksResolver}}
+      ]},
+      // { path: ':id/sprints/:id', component: SprintComponent,
+      //   resolve: {sprint: SprintResolver, tasks: SprintTasksResolver},
+      // },
       {
         path: ':id',
         component: ProjectDetailsComponent,
