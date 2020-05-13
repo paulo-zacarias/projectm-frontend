@@ -1,0 +1,35 @@
+<div class="container">
+  <h2>To do</h2>
+
+  <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" id="todo"
+      [cdkDropListConnectedTo]="progressList" class="list" (cdkDropListDropped)="drop($event)">
+    <div class="list-item" *ngFor="let task of todo">
+      <div style="cursor: move;" cdkDrag>Drag me here!</div>
+        <div>{{task.id}} - {{task.title}}</div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2>In progress</h2>
+
+  <div cdkDropList #progressList="cdkDropList" [cdkDropListData]="inprogress" id="inprogress"
+      [cdkDropListConnectedTo]="[todoList, doneList]" class="list" (cdkDropListDropped)="drop($event)">
+    <div class="list-item" *ngFor="let task of inprogress">
+      <div style="cursor: move;" cdkDrag>Drag me here!</div>
+      <div>{{task.id}} - {{task.title}}</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <h2>Done</h2>
+
+  <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" id="done"
+    [cdkDropListConnectedTo]="progressList" class="list" (cdkDropListDropped)="drop($event)">
+    <div class="list-item" *ngFor="let task of done">
+      <div style="cursor: move;" cdkDrag>Drag me here!</div>
+      <div>{{task.id}} - {{task.title}}</div>
+    </div>
+  </div>
+</div>

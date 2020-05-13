@@ -1,0 +1,14 @@
+<p>task-tile works!</p>
+
+<form>
+    <h4>mat-select</h4>
+    <mat-form-field>
+      <mat-label>Favorite food</mat-label>
+      <mat-select [(ngModel)]="selectedValue" name="food" (selectionChange)="selected($event)">
+        <mat-option *ngFor="let food of foods" [value]="food">
+          {{food.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <p> Selected food: {{selectedValue}} </p>
+  </form>

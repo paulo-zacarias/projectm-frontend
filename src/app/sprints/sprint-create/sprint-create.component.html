@@ -1,0 +1,24 @@
+<form
+    (ngSubmit)="saveSprint()"
+    [formGroup] ="sprintForm">
+    <mat-form-field appearance="fill">
+        <mat-label>Start date</mat-label>
+        <input matInput [errorStateMatcher]="matcher" [matDatepicker]="picker1" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill">
+        <mat-label>End date</mat-label>
+        <input matInput [errorStateMatcher]="matcher" [matDatepicker]="picker2" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        <mat-error *ngIf="sprintForm.hasError('invalidDates')">End date must be bigger than start date</mat-error>
+    </mat-form-field>
+
+    <button mat-button
+    type="submit"
+    [disabled]="sprintForm.pristine || sprintForm.invalid">
+    ADD SPRINT
+    </button>
+</form>

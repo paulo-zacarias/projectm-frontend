@@ -1,0 +1,46 @@
+<h2>Tasks board</h2>
+
+<mat-card class="container">
+    <mat-card-title 
+        matBadge="{{todo.length}}" matBadgeColor="accent" matBadgeOverlap="false" matBadgePosition="after">
+        To do
+    </mat-card-title>
+  
+    <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" id="todo"
+        [cdkDropListConnectedTo]="progressList" class="list" (cdkDropListDropped)="drop($event)">
+      <div class="list-item" *ngFor="let task of todo">
+        <div style="cursor: move;" cdkDrag>Drag me here!</div>
+          <div>{{task.id}} - {{task.title}}</div>
+        </div>
+    </div>
+</mat-card>
+  
+  <mat-card class="container">
+    <mat-card-title 
+    matBadge="{{inprogress.length}}" matBadgeColor="accent" matBadgeOverlap="false" matBadgePosition="after">
+    In progress
+    </mat-card-title>
+  
+    <div cdkDropList #progressList="cdkDropList" [cdkDropListData]="inprogress" id="inprogress"
+        [cdkDropListConnectedTo]="[todoList, doneList]" class="list" (cdkDropListDropped)="drop($event)">
+      <div class="list-item" *ngFor="let task of inprogress">
+        <div style="cursor: move;" cdkDrag>Drag me here!</div>
+        <div>{{task.id}} - {{task.title}}</div>
+      </div>
+    </div>
+  </mat-card>
+  
+  <mat-card class="container">
+    <mat-card-title 
+        matBadge="{{done.length}}" matBadgeColor="accent" matBadgeOverlap="false" matBadgePosition="after">
+        Done
+    </mat-card-title>
+  
+    <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" id="done"
+      [cdkDropListConnectedTo]="progressList" class="list" (cdkDropListDropped)="drop($event)">
+      <div class="list-item" *ngFor="let task of done">
+        <div style="cursor: move;" cdkDrag>Drag me here!</div>
+        <div>{{task.id}} - {{task.title}}</div>
+      </div>
+    </div>
+  </mat-card>

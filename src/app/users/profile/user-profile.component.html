@@ -1,135 +1,136 @@
-<mat-card class="user-details-card">
-    <mat-card-header>
-        <div class="user-profile-picture">
-            <img mat-card-sm-image src="{{user.profile.image}}">
-            <div role="button"
-                (click)="updateProfilePicture()">
-                Change picture
+<div class="content">
+    <mat-card class="user-details-card">
+        <mat-card-header>
+            <div class="user-profile-picture">
+                <img mat-card-sm-image src="{{user.profile.image}}">
+                <div role="button"
+                    (click)="updateProfilePicture()">
+                    Change picture
+                </div>
             </div>
-        </div>
-        <div class="card-header">
-            <mat-card-title>{{user.profile.displayName}}</mat-card-title>
-            <mat-card-subtitle>User profile</mat-card-subtitle>
-        </div>
-    </mat-card-header>
-    <!-- <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu"> -->
-    <mat-card-content>
-        <mat-tab-group dynamicHeight>
-            <mat-tab label="DETAILS">
-              <div class="mat-container">
-                <form novalidate
-                    class="form-container"
-                    (ngSubmit)="updateUser()"
-                    [formGroup] ="updateUserForm">
-                    <mat-form-field 
-                        [appearance]="!editMode ? 'standard' : 'outline'" 
-                        color="accent">
-                        <mat-label>Username</mat-label>
-                        <input matInput
-                            [readonly]="!editMode"
-                            [type]="'text'"
-                            formControlName="username">
-                    </mat-form-field>
-        
-                    <mat-form-field 
-                        [appearance]="!editMode ? 'standard' : 'outline'"
-                        color="accent">
-                        <mat-label>Email address</mat-label>
-                        <input matInput
-                            [readonly]="!editMode"
-                            [type]="'email'"
-                            formControlName="email">
-                            <mat-error *ngIf="updateUserForm.get('email').errors">Not a valid email</mat-error>
-                    </mat-form-field>
-        
-                    <mat-form-field 
-                        [appearance]="!editMode ? 'standard' : 'outline'"
-                        color="accent">
-                        <mat-label>First name</mat-label>
-                        <input matInput
-                            [readonly]="!editMode"
-                            [type]="'text'"
-                            formControlName="firstName">
-                    </mat-form-field>
-        
-                    <mat-form-field
-                        [appearance]="!editMode ? 'standard' : 'outline'"
-                        color="accent">
-                        <mat-label>Last name</mat-label>
-                        <input matInput
-                            [readonly]="!editMode" 
-                            [type]="'text'"
-                            formControlName="lastName">
-                    </mat-form-field>
-        
-                    <div class="form-options-butttons">
-                        <div *ngIf="!editMode">
-                            <button mat-button 
-                                (click)="switchEditMode()">
-                                EDIT DETAILS
-                            </button>
-                        </div>
-        
-                        <div *ngIf="editMode">
-                            <button mat-button
-                                type="submit"
-                                [disabled]="updateUserForm.pristine">
-                                SAVE CHANGES
-                            </button>
-        
-                            <button mat-button 
-                                (click)="switchEditMode()">
-                                CANCEL
-                            </button>
-                        </div>
-                    </div>
-        
-                </form>
-              </div>
-            </mat-tab>
-            <mat-tab label="SECURITY">
+            <div class="card-header">
+                <mat-card-title>{{user.profile.displayName}}</mat-card-title>
+                <mat-card-subtitle>User profile</mat-card-subtitle>
+            </div>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-tab-group dynamicHeight>
+                <mat-tab label="DETAILS">
                 <div class="mat-container">
                     <form novalidate
                         class="form-container"
-                        (ngSubmit)="updateUserPassword()"
-                        [formGroup] ="passwordUpdateForm">
-                        <mat-form-field appearance="outline" color="accent">
-                            <mat-label>Old password</mat-label>
+                        (ngSubmit)="updateUser()"
+                        [formGroup] ="updateUserForm">
+                        <mat-form-field 
+                            [appearance]="!editMode ? 'standard' : 'outline'" 
+                            color="accent">
+                            <mat-label>Username</mat-label>
                             <input matInput
-                                [type]="'password'"
-                                formControlName="oldPassword">
+                                [readonly]="!editMode"
+                                [type]="'text'"
+                                formControlName="username">
                         </mat-form-field>
-
-                        <div formGroupName="passwordGroup">    
-                            <mat-form-field appearance="outline" color="accent">
-                                <mat-label>New password</mat-label>
-                                <input matInput
-                                    [type]="'password'"
-                                    formControlName="password">
-                            </mat-form-field>
             
-                            <mat-form-field appearance="outline" color="accent">
-                                <mat-label>Confirm new password</mat-label>
-                                <input matInput [errorStateMatcher]="matcher"
-                                    [type]="'password'"
-                                    formControlName="confirmPassword">
-                                    <mat-error *ngIf="passwordUpdateForm.get('passwordGroup').invalid">Password doesn't match</mat-error>
-                            </mat-form-field>
-                        </div>
+                        <mat-form-field 
+                            [appearance]="!editMode ? 'standard' : 'outline'"
+                            color="accent">
+                            <mat-label>Email address</mat-label>
+                            <input matInput
+                                [readonly]="!editMode"
+                                [type]="'email'"
+                                formControlName="email">
+                                <mat-error *ngIf="updateUserForm.get('email').errors">Not a valid email</mat-error>
+                        </mat-form-field>
+            
+                        <mat-form-field 
+                            [appearance]="!editMode ? 'standard' : 'outline'"
+                            color="accent">
+                            <mat-label>First name</mat-label>
+                            <input matInput
+                                [readonly]="!editMode"
+                                [type]="'text'"
+                                formControlName="firstName">
+                        </mat-form-field>
+            
+                        <mat-form-field
+                            [appearance]="!editMode ? 'standard' : 'outline'"
+                            color="accent">
+                            <mat-label>Last name</mat-label>
+                            <input matInput
+                                [readonly]="!editMode" 
+                                [type]="'text'"
+                                formControlName="lastName">
+                        </mat-form-field>
             
                         <div class="form-options-butttons">
-                            <div class="save-button">
+                            <div *ngIf="!editMode">
                                 <button mat-button 
+                                    (click)="switchEditMode()">
+                                    EDIT DETAILS
+                                </button>
+                            </div>
+            
+                            <div *ngIf="editMode">
+                                <button mat-button
                                     type="submit"
-                                    [disabled]="passwordUpdateForm.pristine">
-                                    SAVE
+                                    [disabled]="updateUserForm.pristine">
+                                    SAVE CHANGES
+                                </button>
+            
+                                <button mat-button 
+                                    (click)="switchEditMode()">
+                                    CANCEL
                                 </button>
                             </div>
                         </div>
+            
                     </form>
-                  </div>
-            </mat-tab>
-          </mat-tab-group>
+                </div>
+                </mat-tab>
+                <mat-tab label="SECURITY">
+                    <div class="mat-container">
+                        <form novalidate
+                            class="form-container"
+                            (ngSubmit)="updateUserPassword()"
+                            [formGroup] ="passwordUpdateForm">
+                            <mat-form-field appearance="outline" color="accent">
+                                <mat-label>Old password</mat-label>
+                                <input matInput
+                                    [type]="'password'"
+                                    formControlName="oldPassword">
+                            </mat-form-field>
 
-    </mat-card-content>
-</mat-card>
+                            <div formGroupName="passwordGroup">    
+                                <mat-form-field appearance="outline" color="accent">
+                                    <mat-label>New password</mat-label>
+                                    <input matInput
+                                        [type]="'password'"
+                                        formControlName="password">
+                                </mat-form-field>
+                
+                                <mat-form-field appearance="outline" color="accent">
+                                    <mat-label>Confirm new password</mat-label>
+                                    <input matInput [errorStateMatcher]="matcher"
+                                        [type]="'password'"
+                                        formControlName="confirmPassword">
+                                        <mat-error *ngIf="passwordUpdateForm.get('passwordGroup').invalid">Password doesn't match</mat-error>
+                                </mat-form-field>
+                            </div>
+                
+                            <div class="form-options-butttons">
+                                <div class="save-button">
+                                    <button mat-button 
+                                        type="submit"
+                                        [disabled]="passwordUpdateForm.pristine">
+                                        SAVE
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </mat-tab>
+            </mat-tab-group>
+
+        </mat-card-content>
+    </mat-card>
+</div>

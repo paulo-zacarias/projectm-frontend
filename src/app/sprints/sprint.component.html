@@ -1,0 +1,46 @@
+<h2>Sprint list</h2>
+
+<div class="container"> 
+  <div>
+    <form>
+      <mat-form-field class="sprint-selector">
+        <mat-label>Select sprint</mat-label>
+        <mat-select [(value)]="selectedSprint" name="food" (selectionChange)="selected($event)">
+          <mat-option *ngFor="let sprint of sprints" [value]="sprint">
+            {{sprint.id}}. {{sprint.startDate}} - {{sprint.endDate}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </form>
+  </div>
+
+  <div *ngIf="isCreatingSprintAllowed()" class="button-container">
+    <button *ngIf="!viewCreateSprint"
+      mat-button (click)="toogleSprintButton()">
+      <mat-icon
+      class="material-icons md-36" aria-label="project icon">
+      add_circle
+      </mat-icon>
+      Add new
+    </button>
+    <button *ngIf="viewCreateSprint"
+      mat-button (click)="toogleSprintButton()">
+      <mat-icon
+      class="material-icons md-36" aria-label="project icon">
+      remove_circle
+      </mat-icon>
+      Discard
+  </button>
+  </div>
+
+</div>
+
+<div *ngIf="viewCreateSprint">
+  <app-sprint-create
+    [project]="project.id"
+    (sprintAdded)="onSprintAdded($event)">
+    
+  </app-sprint-create>
+</div>
+
+<router-outlet></router-outlet>

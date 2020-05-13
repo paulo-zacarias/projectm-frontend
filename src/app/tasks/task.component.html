@@ -1,0 +1,11 @@
+<p>task works!</p>
+
+<button (click)="printAllTasks()">All tasks</button>
+<button (click)="printTask()">One task</button>
+
+<div *ngIf="task">
+    {{task.title}}
+    {{Status[task.status]}}
+</div>
+
+<button (click)="completeTask()">Complete task</button>

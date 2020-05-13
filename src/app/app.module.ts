@@ -14,7 +14,7 @@ import { LoginComponent } from './users/login/login.component';
 import { LoginStatusComponent } from './users/login/login-status.component';
 import { WelcomeComponent } from './home/welcome.component';
 import { UserRegisterComponent } from './users/register/user-register.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { UserProfileComponent } from './users/profile/user-profile.component';
 import { SearchUserComponent } from './users/search-user/search-user.component';
 import { ProjectDetailsComponent } from './projects/project-details/project-details.component';
@@ -22,6 +22,21 @@ import { UserAvatarListComponent } from './users/user-avatar-list/user-avatar-li
 import { ProjectCreateComponent } from './projects/project-create/project-create.component';
 import { ProjectFormComponent } from './projects/project-form/project-form.component';
 import { ProjectEditComponent } from './projects/project-edit/project-edit.component';
+import { SprintComponent } from './sprints/sprint.component';
+import { DatePipe } from '@angular/common';
+import { TaskComponent } from './tasks/task.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
+import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
+import { DragDropComponent } from './drag-drop/drag-drop.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
+import { TaskTileComponent } from './tasks/task-tile/task-tile.component';
+import { TasksWallComponent } from './tasks/tasks-wall/tasks-wall.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +55,13 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
     ProjectCreateComponent,
     ProjectFormComponent,
     ProjectEditComponent,
+    SprintComponent,
+    TaskComponent,
+    DashboardComponent,
+    SprintCreateComponent,
+    DragDropComponent,
+    TaskTileComponent,
+    TasksWallComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,14 +69,23 @@ import { ProjectEditComponent } from './projects/project-edit/project-edit.compo
     HttpClientModule,
     BrowserAnimationsModule,
     MaterialModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule,
+    DragDropModule,
+    FormsModule
   ],
   providers: [
     {
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,
     multi: true
-    }
+    },
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })

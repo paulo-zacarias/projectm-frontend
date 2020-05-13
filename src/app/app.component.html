@@ -1,1 +1,20 @@
-<app-navigation></app-navigation>
+<mat-toolbar color="primary" class="main-toolbar">
+    <div class="toolbar-head">
+        <div>
+            <mat-icon class="material-icons md-36" aria-label="project icon">
+                view_carousel
+            </mat-icon>
+        </div>
+        <div style="margin-left: 25px;">ProjectM</div>
+    </div>
+
+    <div class="toolbar-container">
+      <span>
+        <app-login-status></app-login-status>
+      </span>
+    </div>
+  </mat-toolbar>
+
+  <div class="content">
+    <router-outlet></router-outlet>
+  </div>
