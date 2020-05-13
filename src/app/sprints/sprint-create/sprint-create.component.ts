@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SprintService } from '../sprint.service';
 import { ISprint } from '../sprint';
 import { FormControl, FormGroup, Validators, FormGroupDirective, NgForm, AbstractControl, FormBuilder } from '@angular/forms';
@@ -23,12 +23,14 @@ export class DateErrorStateMatcher implements ErrorStateMatcher {
 })
 export class SprintCreateComponent implements OnInit {
 
+  @Input()project: number;
+  @Output() sprintAdded = new EventEmitter<ISprint>();
+
   sprint: ISprint;
   sprintForm: FormGroup;
   matcher = new DateErrorStateMatcher();
   selectedStartDate: string;
   selectedEndDate: string;
-  projectId = 2;
 
   constructor(
     private sprintService: SprintService,
@@ -59,11 +61,12 @@ export class SprintCreateComponent implements OnInit {
       const sprint = {
         startDate: this.selectedStartDate,
         endDate: this.selectedEndDate,
-        project: this.projectId
+        project: this.project
       };
-      this.sprintService.addSprint(sprint).subscribe(
-        savedSprint => console.log(savedSprint)
-      );
+      this.sprintService.addSprint(sprint).subscribe(newSprint  =>  {
+        console.log(newSprint);
+        this.sprintAdded.emit(newSprint);
+      });
     }
   }
 

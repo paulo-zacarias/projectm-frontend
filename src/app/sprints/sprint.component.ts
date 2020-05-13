@@ -38,12 +38,19 @@ export class SprintComponent implements OnInit {
     this.router.navigateByUrl('/projects/' + sprint.project + '/sprints/' + sprint.id);
   }
 
-  showCreateSprint() {
+  toogleSprintButton() {
     this.viewCreateSprint = !this.viewCreateSprint;
   }
 
-  allowCreateSprint() {
-    return !this.viewCreateSprint && this.authService.currentUserDetails.id === this.project.admin;
+  isCreatingSprintAllowed() {
+    return this.authService.currentUserDetails.id === this.project.admin;
+  }
+
+  onSprintAdded(newSprint: ISprint) {
+    this.sprints.splice(0, 1, newSprint);
+    this.selectedSprint = newSprint;
+    this.router.navigateByUrl('/projects/' + newSprint.project + '/sprints/' + newSprint.id);
+    this.toogleSprintButton();
   }
 
 }

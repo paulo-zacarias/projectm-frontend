@@ -91,7 +91,7 @@
                 selected
                 [color]="i==0 ? 'primary' : 'accent'">
                 <a class="sprint-link" [routerLink]="['sprints/' + sprint.id]">
-                  {{i+1}}. {{sprint.startDate}} - {{sprint.endDate}}
+                  {{sprint.startDate}} - {{sprint.endDate}}
                 </a>
               </mat-chip>
             </mat-chip-list>

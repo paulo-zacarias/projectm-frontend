@@ -1,3 +1,5 @@
+<h2>Sprint list</h2>
+
 <div class="container"> 
   <div>
     <form>
@@ -12,20 +14,31 @@
     </form>
   </div>
 
-  <div *ngIf="allowCreateSprint()" class="button-container">
-    <button mat-button (click)="showCreateSprint()">
+  <div *ngIf="isCreatingSprintAllowed()" class="button-container">
+    <button *ngIf="!viewCreateSprint"
+      mat-button (click)="toogleSprintButton()">
       <mat-icon
       class="material-icons md-36" aria-label="project icon">
       add_circle
-    </mat-icon>
-    Add new
+      </mat-icon>
+      Add new
     </button>
+    <button *ngIf="viewCreateSprint"
+      mat-button (click)="toogleSprintButton()">
+      <mat-icon
+      class="material-icons md-36" aria-label="project icon">
+      remove_circle
+      </mat-icon>
+      Discard
+  </button>
   </div>
 
 </div>
 
 <div *ngIf="viewCreateSprint">
-  <app-sprint-create>
+  <app-sprint-create
+    [project]="project.id"
+    (sprintAdded)="onSprintAdded($event)">
     
   </app-sprint-create>
 </div>
