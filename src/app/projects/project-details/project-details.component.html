@@ -45,6 +45,39 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
+            Sprints
+            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu_sprints" aria-label="Toggle menu">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu_sprints="matMenu" xPosition="before">
+              <button mat-menu-item>Expand</button>
+              <button mat-menu-item>Remove</button>
+            </mat-menu>
+          </mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="dashboard-card-content">
+          <div>
+            <div *ngIf="sprints.length === 0"> There are no sprints in this project yet.</div>
+            <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
+              <mat-chip *ngFor="let sprint of sprints | slice:0:5; index as i" 
+                selected
+                [color]="sprint.id === currentSprint.id ? 'primary' : 'accent'">
+                <a class="sprint-link" [routerLink]="['sprints/' + sprint.id]">
+                  {{sprint.startDate}} - {{sprint.endDate}}
+                </a>
+              </mat-chip>
+            </mat-chip-list>
+          </div>
+          <app-sprint-stats *ngIf="currentSprint !== undefined"
+          [sprint]="currentSprint">
+        </app-sprint-stats>
+        </mat-card-content>
+      </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile [colspan] = "1" [rowspan] = "1">
+      <mat-card class="dashboard-card">
+        <mat-card-header>
+          <mat-card-title>
             Participants
             <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu_participants" aria-label="Toggle menu">
               <mat-icon>more_vert</mat-icon>
@@ -66,36 +99,6 @@
               [listOfUsers]="participants">
             </app-user-avatar-list>
         </div>
-        </mat-card-content>
-      </mat-card>
-    </mat-grid-tile>
-    <mat-grid-tile [colspan] = "1" [rowspan] = "1">
-      <mat-card class="dashboard-card">
-        <mat-card-header>
-          <mat-card-title>
-            Sprints
-            <button mat-icon-button class="more-button" [matMenuTriggerFor]="menu_sprints" aria-label="Toggle menu">
-              <mat-icon>more_vert</mat-icon>
-            </button>
-            <mat-menu #menu_sprints="matMenu" xPosition="before">
-              <button mat-menu-item>Expand</button>
-              <button mat-menu-item>Remove</button>
-            </mat-menu>
-          </mat-card-title>
-        </mat-card-header>
-        <mat-card-content class="dashboard-card-content">
-          <div>
-            <div *ngIf="sprints.length === 0"> There are no sprints in this project yet.</div>
-            <mat-chip-list class="mat-chip-list-stacked" aria-label="Color selection">
-              <mat-chip *ngFor="let sprint of sprints | slice:0:5; index as i" 
-                selected
-                [color]="i==0 ? 'primary' : 'accent'">
-                <a class="sprint-link" [routerLink]="['sprints/' + sprint.id]">
-                  {{sprint.startDate}} - {{sprint.endDate}}
-                </a>
-              </mat-chip>
-            </mat-chip-list>
-          </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>

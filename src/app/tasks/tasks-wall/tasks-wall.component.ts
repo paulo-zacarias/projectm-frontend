@@ -73,25 +73,6 @@ export class TasksWallComponent implements OnInit {
     );
   }
 
-  // fetchAndFilterTasks() {
-  //   this.taskService.getTasksBySprint(1).subscribe(
-  //     tasks => tasks.map(task => {
-  //       if (task.status === 0) {
-  //         this.todo.push(task);
-  //       }
-  //       if (task.status === 1) {
-  //         this.inprogress.push(task);
-  //       }
-  //       if (task.status === 2) {
-  //         this.done.push(task);
-  //       }
-  //     })
-  //   );
-  //   console.log('ToDo: ', this.todo);
-  //   console.log('InProgress: ', this.inprogress);
-  //   console.log('Done: ', this.done);
-  // }
-
   clearAndFilterTasks() {
     this.todo = [];
     this.inprogress = [];

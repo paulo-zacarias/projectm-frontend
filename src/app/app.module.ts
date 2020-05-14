@@ -37,6 +37,9 @@ import { DragDropComponent } from './drag-drop/drag-drop.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { TaskTileComponent } from './tasks/task-tile/task-tile.component';
 import { TasksWallComponent } from './tasks/tasks-wall/tasks-wall.component';
+import { SprintStatsComponent } from './sprints/sprint-stats/sprint-stats.component';
+import { ChartsModule } from 'ng2-charts';
+import { DoughnutChartComponent } from './sprints/doughnut-chart/doughnut-chart.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +65,8 @@ import { TasksWallComponent } from './tasks/tasks-wall/tasks-wall.component';
     DragDropComponent,
     TaskTileComponent,
     TasksWallComponent,
+    SprintStatsComponent,
+    DoughnutChartComponent,
   ],
   imports: [
     BrowserModule,
@@ -77,7 +82,8 @@ import { TasksWallComponent } from './tasks/tasks-wall/tasks-wall.component';
     MatButtonModule,
     LayoutModule,
     DragDropModule,
-    FormsModule
+    FormsModule,
+    ChartsModule
   ],
   providers: [
     {

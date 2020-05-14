@@ -1,0 +1,19 @@
+<div class="graphs-container" *ngIf="sprintTasks !== undefined">
+
+    <div style="display: flex; flex-wrap: wrap;">
+        <div class="tasks-chart">
+            <p class="graph-description">Sprint burndown (planned / done points):</p>
+            <app-doughnut-chart
+                [doughnutChartData]="[sprint.plannedStoryPoints, totalPointsDone]"
+                [doughnutChartLabels]="burndownLabels">
+            </app-doughnut-chart>
+        </div>
+        <div class="tasks-chart">
+            <p class="graph-description">Number of tasks by status:</p>
+            <app-doughnut-chart
+                [doughnutChartData]="[totalTasksTodo, totalTasksInprogress, totalTasksDone]"
+                [doughnutChartLabels]="tasksLabels">
+            </app-doughnut-chart>
+        </div>
+    </div>
+</div>

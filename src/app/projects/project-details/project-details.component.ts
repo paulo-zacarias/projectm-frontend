@@ -17,6 +17,7 @@ export class ProjectDetailsComponent implements OnInit {
   admin: IUser;
   participants: IUser[];
   sprints: ISprint[];
+  currentSprint: ISprint;
 
   constructor(
       private userService: UserService,
@@ -29,6 +30,7 @@ export class ProjectDetailsComponent implements OnInit {
     this.participants = this.route.snapshot.data.participants;
     this.sprints = this.route.snapshot.data.sprints;
     this.getAdminDetails(this.project.admin);
+    this.getCurrentSprint();
   }
 
 
@@ -44,4 +46,18 @@ export class ProjectDetailsComponent implements OnInit {
     }
   }
 
+  getCurrentSprint() {
+    const currentDate = Date.now();
+    this.currentSprint = this.sprints.find(sprint => {
+      if (Date.parse(sprint.startDate) <= currentDate) {
+        if (Date.parse(sprint.endDate) >= currentDate) {
+          return sprint;
+        }
+      }
+    });
+    // If there is no current sprint, assigns the newest sprint from the sprint array
+    if (this.currentSprint === undefined) {
+      this.currentSprint = this.sprints[0];
+    }
+  }
 }
