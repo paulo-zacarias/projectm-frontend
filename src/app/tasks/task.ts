@@ -1,3 +1,5 @@
+import { IUser } from '../users/user';
+
 export interface ITask {
     id: number;
     title: string;
@@ -5,8 +7,8 @@ export interface ITask {
     weight: number;
     storyPoints: number;
     status: number;
-    assignedPerson: number;
     project: number;
+    assignedPerson: IUser;
 }
 
 export enum Status {

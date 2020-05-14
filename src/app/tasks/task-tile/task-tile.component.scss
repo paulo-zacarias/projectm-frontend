@@ -1,0 +1,23 @@
+.user-box {
+    display: flex;
+    margin-top: 10px;
+}
+
+.task-title {
+    background-color: lightgrey;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.task-title>h4 {
+    margin: 0px;
+    font-weight: 500;
+}
+.material-icons.md-18 { 
+    font-size: 18px; 
+}
+
+.user-info > p {
+    margin: 0px;
+}
