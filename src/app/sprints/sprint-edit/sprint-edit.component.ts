@@ -17,17 +17,16 @@ export class DateErrorStateMatcher implements ErrorStateMatcher {
 }
 
 @Component({
-  selector: 'app-sprint-create',
-  templateUrl: './sprint-create.component.html',
-  styleUrls: ['./sprint-create.component.scss']
+  selector: 'app-sprint-edit',
+  templateUrl: './sprint-edit.component.html',
+  styleUrls: ['./sprint-edit.component.scss']
 })
-export class SprintCreateComponent implements OnInit {
+export class SprintEditComponent implements OnInit {
 
-  @Input()project: number;
-  @Output() sprintAdded = new EventEmitter<ISprint>();
+  @Input()sprint: ISprint;
+  @Output() sprintSaved = new EventEmitter<ISprint>();
   @Output() discarded = new EventEmitter<any>();
 
-  sprint: ISprint;
   sprintForm: FormGroup;
   matcher = new DateErrorStateMatcher();
   selectedStartDate: string;
@@ -41,23 +40,18 @@ export class SprintCreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.sprintForm = this.fb.group({
-      startDate: [new Date(), Validators.required],
-      endDate: [new Date(), Validators.required]
+      startDate: [new Date(this.sprint.startDate), Validators.required],
+      endDate: [new Date(this.sprint.endDate), Validators.required]
     }, {validator: this.checkDates });
   }
 
   saveFormSprint() {
     if (this.sprintForm.touched && this.sprintForm.valid) {
-      this.selectedStartDate = this.datepipe.transform(this.sprintForm.get('startDate').value, 'yyyy-MM-dd');
-      this.selectedEndDate = this.datepipe.transform(this.sprintForm.get('endDate').value, 'yyyy-MM-dd');
-      const sprint = {
-        startDate: this.selectedStartDate,
-        endDate: this.selectedEndDate,
-        project: this.project
-      };
-      this.sprintService.addSprint(sprint).subscribe(newSprint  =>  {
-        console.log(newSprint);
-        this.sprintAdded.emit(newSprint);
+      this.sprint.startDate = this.datepipe.transform(this.sprintForm.get('startDate').value, 'yyyy-MM-dd');
+      this.sprint.endDate = this.datepipe.transform(this.sprintForm.get('endDate').value, 'yyyy-MM-dd');
+      this.sprintService.updateSprint(this.sprint.id, this.sprint).subscribe(savedSprint  =>  {
+        console.log(savedSprint);
+        this.sprintSaved.emit(savedSprint);
       });
     }
   }
@@ -65,7 +59,6 @@ export class SprintCreateComponent implements OnInit {
   cancel() {
     this.discarded.emit();
   }
-
 
   checkDates(c: AbstractControl): { [key: string]: boolean} | null {
     const startDate = c.get('startDate').value;

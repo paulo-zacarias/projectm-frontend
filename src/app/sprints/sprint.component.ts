@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ISprint } from './sprint';
-import { SprintService } from './sprint.service';
 import { MatSelectChange } from '@angular/material/select';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from '../users/auth/authentication.service';
@@ -18,9 +17,9 @@ export class SprintComponent implements OnInit {
   selectedSprintId: number;
   selectedSprint: ISprint;
   viewCreateSprint = false;
+  viewEditSprint = false;
 
   constructor(
-    private sprintService: SprintService,
     private router: Router,
     private route: ActivatedRoute,
     private authService: AuthenticationService) {}
@@ -38,19 +37,37 @@ export class SprintComponent implements OnInit {
     this.router.navigateByUrl('/projects/' + sprint.project + '/sprints/' + sprint.id);
   }
 
-  toogleSprintButton() {
-    this.viewCreateSprint = !this.viewCreateSprint;
+  enableCreateButton() {
+    this.viewCreateSprint = true;
   }
 
-  isCreatingSprintAllowed() {
-    return this.authService.currentUserDetails.id === this.project.admin;
+  enableEditButton() {
+    this.viewEditSprint = true;
+  }
+
+  disableButtons() {
+    this.viewCreateSprint = false;
+    this.viewEditSprint = false;
+  }
+
+  showActionsMenu() {
+    const isUserProjectAdmin = this.authService.currentUserDetails.id === this.project.admin;
+    return isUserProjectAdmin && !this.viewCreateSprint && !this.viewEditSprint;
   }
 
   onSprintAdded(newSprint: ISprint) {
     this.sprints.splice(0, 1, newSprint);
     this.selectedSprint = newSprint;
+    this.viewCreateSprint = false;
     this.router.navigateByUrl('/projects/' + newSprint.project + '/sprints/' + newSprint.id);
-    this.toogleSprintButton();
+  }
+
+  onSprintSaved(savedSprint: ISprint) {
+    const index = this.sprints.indexOf(this.selectedSprint);
+    this.sprints.splice(index, 1, savedSprint);
+    this.selectedSprint = savedSprint;
+    this.viewEditSprint = false;
+
   }
 
 }
