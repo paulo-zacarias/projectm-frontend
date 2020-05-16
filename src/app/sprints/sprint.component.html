@@ -14,33 +14,37 @@
     </form>
   </div>
 
-  <div *ngIf="isCreatingSprintAllowed()" class="button-container">
-    <button *ngIf="!viewCreateSprint"
-      mat-button (click)="toogleSprintButton()">
+  <div *ngIf="showActionsMenu()" class="button-container">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Toggle menu">
       <mat-icon
       class="material-icons md-36" aria-label="project icon">
-      add_circle
+      menu
       </mat-icon>
-      Add new
     </button>
-    <button *ngIf="viewCreateSprint"
-      mat-button (click)="toogleSprintButton()">
-      <mat-icon
-      class="material-icons md-36" aria-label="project icon">
-      remove_circle
-      </mat-icon>
-      Discard
-  </button>
-  </div>
 
+    <mat-menu #menu="matMenu" xPosition="after">
+      <button mat-menu-item (click)="enableCreateButton()">Add new sprint</button>
+      <button mat-menu-item (click)="enableEditButton()">Edit selected</button>
+    </mat-menu>
+  </div>
 </div>
 
 <div *ngIf="viewCreateSprint">
   <app-sprint-create
     [project]="project.id"
-    (sprintAdded)="onSprintAdded($event)">
+    (sprintAdded)="onSprintAdded($event)"
+    (discarded)="disableButtons()">
     
   </app-sprint-create>
+</div>
+
+<div *ngIf="viewEditSprint">
+  <app-sprint-edit
+    [sprint]="selectedSprint"
+    (sprintSaved)="onSprintSaved($event)"
+    (discarded)="disableButtons()">
+    
+  </app-sprint-edit>
 </div>
 
 <router-outlet></router-outlet>

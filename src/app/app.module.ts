@@ -40,6 +40,9 @@ import { TasksWallComponent } from './tasks/tasks-wall/tasks-wall.component';
 import { SprintStatsComponent } from './sprints/sprint-stats/sprint-stats.component';
 import { ChartsModule } from 'ng2-charts';
 import { DoughnutChartComponent } from './sprints/doughnut-chart/doughnut-chart.component';
+import { SprintEditComponent } from './sprints/sprint-edit/sprint-edit.component';
+import { TaskCreateComponent } from './tasks/task-create/task-create.component';
+import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +70,9 @@ import { DoughnutChartComponent } from './sprints/doughnut-chart/doughnut-chart.
     TasksWallComponent,
     SprintStatsComponent,
     DoughnutChartComponent,
+    SprintEditComponent,
+    TaskCreateComponent,
+    TaskEditComponent,
   ],
   imports: [
     BrowserModule,

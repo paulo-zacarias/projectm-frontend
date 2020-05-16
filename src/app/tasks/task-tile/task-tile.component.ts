@@ -17,24 +17,8 @@ export class TaskTileComponent implements OnInit {
 
   @Input()task: ITask;
 
-  selectedValue: Food;
-
-  foods: Food[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'}
-  ];
-
   constructor() { }
 
   ngOnInit(): void {
   }
-
-  selected(event: MatSelectChange): void {
-    const selValue: Food = event.value;
-    console.log('Selected value: ', selValue.value);
-    console.log('Selected viewValue: ', selValue.viewValue);
-
-  }
-
 }

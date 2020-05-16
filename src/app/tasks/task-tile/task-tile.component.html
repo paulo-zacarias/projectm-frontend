@@ -1,14 +1,20 @@
-<p>task-tile works!</p>
+<div class="task-title">
+    <h4>{{task.title}}</h4>
+    <button style="margin-left: auto;" mat-icon-button class="more-button" [matMenuTriggerFor]="menu" aria-label="Toggle menu">
+      <mat-icon class="material-icons md-18">more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu" xPosition="after">
+      <button mat-menu-item>Details</button>
+      <button mat-menu-item>Edit</button>
+    </mat-menu>
+</div>
 
-<form>
-    <h4>mat-select</h4>
-    <mat-form-field>
-      <mat-label>Favorite food</mat-label>
-      <mat-select [(ngModel)]="selectedValue" name="food" (selectionChange)="selected($event)">
-        <mat-option *ngFor="let food of foods" [value]="food">
-          {{food.viewValue}}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-    <p> Selected food: {{selectedValue}} </p>
-  </form>
+<div class="user-box">
+  <div>
+      <img mat-card-avatar src="{{task.assignedPerson.profile.image}}">
+  </div>
+  <div class="user-info">
+      <p class="thick">{{task.assignedPerson.profile.displayName}}</p>
+      <p>{{task.assignedPerson.email}}</p>
+  </div>
+</div>

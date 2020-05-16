@@ -8,11 +8,25 @@
   
     <div cdkDropList #todoList="cdkDropList" [cdkDropListData]="todo" id="todo"
         [cdkDropListConnectedTo]="progressList" class="list" (cdkDropListDropped)="drop($event)">
-      <div class="list-item" *ngFor="let task of todo">
-        <div style="cursor: move;" cdkDrag>Drag me here!</div>
-          <div>{{task.id}} - {{task.title}}</div>
+      <div class="list-item" *ngFor="let task of todo" cdkDrag>
+          <div>
+            <app-task-tile [task]="task"></app-task-tile>
+          </div>
         </div>
     </div>
+
+    <div *ngIf="!showAddTask">
+      <button (click)="toggleAddButton()"
+        mat-mini-fab color="accent" aria-label="">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </div>
+
+    <app-task-create *ngIf="showAddTask"
+      [project]="selectedSprint.project"
+      (addedTask)="onAddedTask($event)"
+      (discarded)="toggleAddButton()">
+    </app-task-create>
 </mat-card>
   
   <mat-card class="container">
@@ -23,9 +37,10 @@
   
     <div cdkDropList #progressList="cdkDropList" [cdkDropListData]="inprogress" id="inprogress"
         [cdkDropListConnectedTo]="[todoList, doneList]" class="list" (cdkDropListDropped)="drop($event)">
-      <div class="list-item" *ngFor="let task of inprogress">
-        <div style="cursor: move;" cdkDrag>Drag me here!</div>
-        <div>{{task.id}} - {{task.title}}</div>
+      <div class="list-item" *ngFor="let task of inprogress" cdkDrag>
+        <div>
+          <app-task-tile [task]="task"></app-task-tile>
+        </div>
       </div>
     </div>
   </mat-card>
@@ -38,9 +53,10 @@
   
     <div cdkDropList #doneList="cdkDropList" [cdkDropListData]="done" id="done"
       [cdkDropListConnectedTo]="progressList" class="list" (cdkDropListDropped)="drop($event)">
-      <div class="list-item" *ngFor="let task of done">
-        <div style="cursor: move;" cdkDrag>Drag me here!</div>
-        <div>{{task.id}} - {{task.title}}</div>
+      <div class="list-item" *ngFor="let task of done" cdkDrag>
+        <div>
+          <app-task-tile [task]="task"></app-task-tile>
+        </div>
       </div>
     </div>
   </mat-card>

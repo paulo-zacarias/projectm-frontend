@@ -19,12 +19,11 @@ import { TaskComponent } from './tasks/task.component';
 import { SprintResolver } from './sprints/resolvers/sprint-resolver.service';
 import { SprintTasksResolver } from './sprints/resolvers/sprint-tasks-resolver.service';
 import { SprintCreateComponent } from './sprints/sprint-create/sprint-create.component';
-import { DragDropComponent } from './drag-drop/drag-drop.component';
-import { TaskTileComponent } from './tasks/task-tile/task-tile.component';
 import { TasksWallComponent } from './tasks/tasks-wall/tasks-wall.component';
+import { TaskCreateComponent } from './tasks/task-create/task-create.component';
 
 const routes: Routes = [
-  { path: '', component: SprintComponent },
+  { path: '', component: TaskCreateComponent },
   { path: 'home', component: WelcomeComponent },
   { path: 'users', component: UserComponent },
   { path: 'login', component: LoginComponent },
