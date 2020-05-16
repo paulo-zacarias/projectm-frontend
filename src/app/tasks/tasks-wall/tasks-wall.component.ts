@@ -4,6 +4,7 @@ import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/dr
 import { ITask } from '../Task';
 import { ActivatedRoute } from '@angular/router';
 import { ISprint } from 'src/app/sprints/sprint';
+import { SprintService } from 'src/app/sprints/sprint.service';
 
 @Component({
   selector: 'app-tasks-wall',
@@ -14,12 +15,16 @@ export class TasksWallComponent implements OnInit {
 
   tasks: ITask[];
   selectedSprint: ISprint;
+  showAddTask = false;
 
   todo = [];
   inprogress = [];
   done = [];
 
-  constructor(private taskService: TaskService, private route: ActivatedRoute) {}
+  constructor(
+    private taskService: TaskService,
+    private route: ActivatedRoute,
+    private sprintService: SprintService) {}
 
   ngOnInit(): void {
     this.route.data.subscribe(data => {
@@ -91,6 +96,22 @@ export class TasksWallComponent implements OnInit {
     console.log('ToDo: ', this.todo);
     console.log('InProgress: ', this.inprogress);
     console.log('Done: ', this.done);
+  }
+
+  onAddedTask(addedTask: ITask) {
+    const taskList = this.selectedSprint.tasks;
+    taskList.push(addedTask.id);
+    this.sprintService.updateSprintTasks(this.selectedSprint.id, this.selectedSprint.tasks).subscribe(
+      updateSprint => {
+        console.log(updateSprint);
+        this.selectedSprint.tasks.push(addedTask.id);
+        this.tasks.push(addedTask);
+        this.todo.push(addedTask);
+      });
+  }
+
+  toggleAddButton() {
+    this.showAddTask = !this.showAddTask;
   }
 
 }

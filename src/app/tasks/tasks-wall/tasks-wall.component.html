@@ -14,6 +14,19 @@
           </div>
         </div>
     </div>
+
+    <div *ngIf="!showAddTask">
+      <button (click)="toggleAddButton()"
+        mat-mini-fab color="accent" aria-label="">
+        <mat-icon>add_circle</mat-icon>
+      </button>
+    </div>
+
+    <app-task-create *ngIf="showAddTask"
+      [project]="selectedSprint.project"
+      (addedTask)="onAddedTask($event)"
+      (discarded)="toggleAddButton()">
+    </app-task-create>
 </mat-card>
   
   <mat-card class="container">

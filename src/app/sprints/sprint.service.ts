@@ -56,8 +56,12 @@ export class SprintService {
     );
   }
 
-  updateSprintTasks(id: number, tasks: any): Observable<ISprint> {
-    return this.http.patch<ISprint>(this.sprintsUrl + id + '/', tasks, httpOptions)
+  updateSprintTasks(id: number, taskList: number[]): Observable<ISprint> {
+    const sprintTasks = {
+      tasks: taskList
+    };
+
+    return this.http.patch<ISprint>(this.sprintsUrl + id + '/', sprintTasks, httpOptions)
     .pipe(
       retry(1),
       catchError(handleError)
