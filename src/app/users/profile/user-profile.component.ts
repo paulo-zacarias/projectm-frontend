@@ -74,10 +74,10 @@ export class UserProfileComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(user => {
-      console.log('The dialog was closed');
-      this.user = user;
+      if (user) {
+        this.user = user;
+      }
     });
-    console.log(this.user);
   }
 
   updateUserPassword(): void {
