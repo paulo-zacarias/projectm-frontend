@@ -3,12 +3,13 @@ import { HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http'
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError} from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { httpOptions, handleError } from '../shared/http-common';
 
-import { IUser } from './user';
+import { IUser, IProfile } from './user';
 
-const httpOptions = {
+const httpOptionsFile = {
   headers: new HttpHeaders({
-    'Content-Type':  'application/json',
+    'Accept': 'application/json',
   })
 };
 
@@ -24,7 +25,7 @@ export class UserService {
     return this.http.get<IUser[]>(this.usersUrl)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(handleError)
     );
   }
 
@@ -32,7 +33,7 @@ export class UserService {
     return this.http.get<IUser>(this.usersUrl + '/' + id)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(handleError)
     );
   }
 
@@ -40,7 +41,7 @@ export class UserService {
     return this.http.post<IUser>(this.usersUrl + '/register', user, httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(handleError)
     );
   }
 
@@ -48,7 +49,7 @@ export class UserService {
     return this.http.put<IUser>( this.usersUrl + '/' + id + '/update', user, httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(handleError)
     );
   }
 
@@ -56,7 +57,7 @@ export class UserService {
     return this.http.delete<IUser>(this.usersUrl + '/' + id + '/delete')
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(handleError)
     );
   }
 
@@ -69,7 +70,7 @@ export class UserService {
     return this.http.put<any>(this.usersUrl + '/new-password', password, httpOptions)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(handleError)
     );
   }
 
@@ -77,23 +78,18 @@ export class UserService {
     return this.http.get<IUser[]>(this.usersUrl + '?project_id=' + projectId)
     .pipe(
       retry(1),
-      catchError(this.handleError)
+      catchError(handleError)
     );
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.error instanceof ErrorEvent) {
-      // A client-side or network error occurred. Handle it accordingly.
-      console.error('An error occurred:', error.error.message);
-    } else {
-      // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
-      console.error(
-        `Backend returned code ${error.status}, ` +
-        `body was: ${error.error}`);
-    }
-    // return an observable with a user-facing error message
-    return throwError(
-      'Something bad happened; please try again later.');
+  uploadUserProfilePiture(profileId: number, file: any): Observable<IProfile> {
+    const form = new FormData();
+    form.append('image', file, file.name);
+    return this.http.patch<IProfile>(this.usersUrl + '/profile/' + profileId + '/picture-upload', form, httpOptionsFile)
+    .pipe(
+      retry(1),
+      catchError(handleError)
+    );
   }
+
 }

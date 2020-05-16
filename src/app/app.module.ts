@@ -43,6 +43,10 @@ import { DoughnutChartComponent } from './sprints/doughnut-chart/doughnut-chart.
 import { SprintEditComponent } from './sprints/sprint-edit/sprint-edit.component';
 import { TaskCreateComponent } from './tasks/task-create/task-create.component';
 import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
+import { TaskDetailsComponent } from './tasks/task-details/task-details.component';
+import { StatusPipe } from './shared/status.pipe';
+import { WeightPipe } from './shared/weight.pipe';
+import { UploadPictureComponent } from './users/upload-picture/upload-picture.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +77,10 @@ import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
     SprintEditComponent,
     TaskCreateComponent,
     TaskEditComponent,
+    TaskDetailsComponent,
+    StatusPipe,
+    WeightPipe,
+    UploadPictureComponent
   ],
   imports: [
     BrowserModule,
@@ -97,7 +105,7 @@ import { TaskEditComponent } from './tasks/task-edit/task-edit.component';
     useClass: AuthInterceptor,
     multi: true
     },
-    DatePipe
+    DatePipe,
   ],
   bootstrap: [AppComponent]
 })
