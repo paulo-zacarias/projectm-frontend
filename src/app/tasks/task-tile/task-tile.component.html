@@ -4,7 +4,7 @@
       <mat-icon class="material-icons md-18">more_vert</mat-icon>
     </button>
     <mat-menu #menu="matMenu" xPosition="after">
-      <button mat-menu-item>Details</button>
+      <button mat-menu-item (click)="openDialog(task)">Details</button>
       <button mat-menu-item>Edit</button>
     </mat-menu>
 </div>

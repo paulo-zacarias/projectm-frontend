@@ -7,7 +7,8 @@ export interface IUser {
     profile: IProfile;
 }
 
-class IProfile {
+export interface IProfile {
+    id: number;
     image: string;
     displayName: string;
 }

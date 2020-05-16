@@ -1,12 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ITask } from '../Task';
-import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
-import { MatSelectChange } from '@angular/material/select';
-
-interface Food {
-  value: string;
-  viewValue: string;
-}
+import { TaskDetailsComponent } from '../task-details/task-details.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-task-tile',
@@ -17,8 +12,16 @@ export class TaskTileComponent implements OnInit {
 
   @Input()task: ITask;
 
-  constructor() { }
+  constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
+
+  openDialog(task: ITask) {
+    this.dialog.open(TaskDetailsComponent, {
+      width: '300px',
+      data: task
+    });
+  }
+
 }

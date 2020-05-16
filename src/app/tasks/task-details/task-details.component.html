@@ -1,0 +1,20 @@
+<button class="close" mat-button (click)="onNoClick()">X</button>
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+    <p>{{data.description}}</p>
+    <p>Status: {{data.status | status}}</p>
+    <p>Story points: {{data.storyPoints}}</p>
+    <p>Priority: {{data.weight | weight}}</p>
+
+
+    <p>Assigned to:</p>
+    <div class="user-box">
+        <div>
+            <img mat-card-avatar src="{{data.assignedPerson.profile.image}}">
+        </div>
+        <div class="user-info">
+            <p class="thick">{{data.assignedPerson.profile.displayName}}</p>
+            <p>{{data.assignedPerson.email}}</p>
+        </div>
+      </div>
+</div>

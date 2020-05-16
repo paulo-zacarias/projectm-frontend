@@ -4,6 +4,8 @@ import { IUser } from '../user';
 import { AuthenticationService } from '../auth/authentication.service';
 import { FormGroup, Validators, FormBuilder, AbstractControl, FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
+import { MatDialog } from '@angular/material/dialog';
+import { UploadPictureComponent } from '../upload-picture/upload-picture.component';
 
 
 export class PasswordErrorStateMatcher implements ErrorStateMatcher {
@@ -35,7 +37,8 @@ export class UserProfileComponent implements OnInit {
     private userService: UserService,
     private authService: AuthenticationService,
     private fb: FormBuilder,
-    private passFormBuilder: FormBuilder
+    private passFormBuilder: FormBuilder,
+    public dialog: MatDialog
     ) { }
 
   ngOnInit(): void {
@@ -65,7 +68,16 @@ export class UserProfileComponent implements OnInit {
   }
 
   updateProfilePicture(): void {
-    console.log('Update profile picture function');
+    const dialogRef = this.dialog.open(UploadPictureComponent, {
+      // width: '250px',
+      data: this.user
+    });
+
+    dialogRef.afterClosed().subscribe(user => {
+      if (user) {
+        this.user = user;
+      }
+    });
   }
 
   updateUserPassword(): void {
